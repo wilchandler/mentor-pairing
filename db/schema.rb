@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130828115517) do
+ActiveRecord::Schema.define(:version => 20130905215649) do
 
   create_table "appointments", :force => true do |t|
     t.integer  "mentor_id"
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(:version => 20130828115517) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "activation_code"
     t.boolean  "activated"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "twitter_handle"
+    t.string   "name"
+    t.integer  "dbc_id"
   end
 
 end

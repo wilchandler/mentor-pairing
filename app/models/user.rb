@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
 
   private
 
+  def get_attributes
+    dbc_user = DBC::User.find(self.dbc_id)
+    name = dbc_user.name
+    email = dbc_user.email
+    twitter_handle = dbc_user.profile[:twitter] || ''
+    self.attributes = {:name => name, :email => email, :twitter_handle => twitter_handle}
+  end
+
   def create_activation_code
     self.activation_code = Digest::MD5.hexdigest(rand.to_s + Time.now.to_s + twitter_handle)
   end
