@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_params
-    [:first_name, :last_name, :twitter_handle, :email].inject({}) { |hash, attribute| hash.merge(attribute => params[attribute]) }
+    [:name, :twitter_handle, :email].inject({}) { |hash, attribute| hash.merge(attribute => params[attribute]) }
   end
 
 end

@@ -1,15 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :type, :twitter_handle
+  attr_accessible :email, :name, :type, :twitter_handle
 
   has_many :availabilities, :foreign_key => :mentor_id
   has_many :mentoring_appointments, :foreign_key => :mentor_id, :class_name => "Appointment"
   has_many :menteeing_appointments, :foreign_key => :mentee_id, :class_name => "Appointment"
 
+  before_create :get_attributes, :prepend => true
   before_create :create_activation_code
-
-  def name
-    [first_name, last_name].compact.join(" ")
-  end
 
   def send_activation
     UserMailer.user_activation(self).deliver
