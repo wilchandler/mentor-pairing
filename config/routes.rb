@@ -3,6 +3,7 @@ MentorPairing::Application.routes.draw do
   get "/appointments/:code/create", :to => "appointments#create"
   get '/sign_in', :to => 'sessions#new', :as => :sign_in
   get '/auth/:provider/callback', :to => 'sessions#create'
+  post '/auth/:provider/callback', :to => 'sessions#create'
   get '/sign_out', :to => 'sessions#destroy', :as => :sign_out
 
   root :to => "availabilities#index"

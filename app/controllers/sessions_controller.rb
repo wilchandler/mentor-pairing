@@ -5,9 +5,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_by_dbc_id(auth_hash['id'])
-    session[:user_id] = @user.id
-    redirect_to root_path
+    user = Authentication.new(auth_hash).user
+    if user.persisted?
+      session[:user_id] = user.id
+      redirect_to root_path
+    else
+      redirect_to :back
+    end
   end
 
   def destroy
