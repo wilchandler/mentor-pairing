@@ -1,3 +1,4 @@
+<button id="show-calendar" class="link">My Calendar</button>
 <div id="calendar">
   <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
   <%= h @date.strftime("%B %Y") %>
@@ -11,7 +12,7 @@
       <%= date.day %>
       <ul class="daily_appointments">
       <% appointment.each do |appt| %>
-        <li><%= appt.mentee.first_name %></li>
+        <li><%= appt.mentee.first_name %> <%= appt .mentee.last_name %></li>
       <% end %>
       <ul>
     <% end %>
@@ -33,7 +34,7 @@
 <div class="panel">
 	<p>
 	  <%= display_appointment(a) %>
-	</p>  
+	</p>
 </div>
 <% end %>
 
