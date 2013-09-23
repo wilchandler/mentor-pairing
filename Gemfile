@@ -9,6 +9,7 @@ gem "rails"
 gem "sass-rails"
 gem "susy"
 gem "uglifier"
+gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/watu/table_builder.git"
 
 group :development, :test do
   gem "capybara"

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/watu/table_builder.git
+  revision: 56d962a533bc41f376201d49185bf4f63e2a6431
+  specs:
+    watu_table_builder (0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -165,3 +171,4 @@ DEPENDENCIES
   shoulda-matchers
   susy
   uglifier
+  watu_table_builder!
