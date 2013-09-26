@@ -16,6 +16,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-rails"
   gem "rake"
+  gem "faker"
   gem "rspec-rails"
   gem "shoulda-matchers"
 end
