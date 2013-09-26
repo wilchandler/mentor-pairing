@@ -19,4 +19,8 @@ module ApplicationHelper
   def link_to_user(m)
     link_to(m.name, "https://twitter.com/" + m.twitter_handle)
   end
+
+  def month_link(symbol, path, month)
+    link_to symbol, path + "?" + "month=" + month.strftime("%Y-%m-01")
+  end
 end
