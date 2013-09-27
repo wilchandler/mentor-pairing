@@ -20,7 +20,7 @@ module ApplicationHelper
     link_to(m.name, "https://twitter.com/" + m.twitter_handle)
   end
 
-  def month_link(symbol, path, month)
-    link_to symbol, path + "?" + "month=" + month.strftime("%Y-%m-01")
+  def month_link(symbol, month)
+    link_to symbol, :month => month.strftime("%Y-%m-01")
   end
 end

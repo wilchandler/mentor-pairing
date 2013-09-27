@@ -1,24 +1,5 @@
 <button id="show-calendar" class="link">My Calendar</button>
-<div id="calendar">
-  <%= month_link("<", @date.beginning_of_month-1) %>
-  <%= html_escape @date.strftime("%B %Y") %>
-  <%= month_link(">", @date.end_of_month+1) %>
-  <%= calendar_for @mentoring_appointments, :year => @date.year, :month => @date.month do |calendar| %>
-  <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')%>
-  <%= calendar.day(:day_method => :start_time) do |date, appointment| %>
-    <% if @mentoring_appointments.empty? %>
-      <%= date.day %>
-    <% else %>
-      <%= date.day %>
-      <ul class="daily_appointments">
-      <% appointment.each do |appt| %>
-        <li><%= appt.mentee.first_name %> <%= appt .mentee.last_name %></li>
-      <% end %>
-      <ul>
-    <% end %>
-  <% end %>
-<% end %>
-</div>
+<%= render partial: "calendar", :locals => {:events => @mentoring_appointments} %>
 <% unless @availabilities.empty? %><h2>My upcoming availability</h2><% end %>
 <% @availabilities.each do |a| %>
 <div class="panel">
