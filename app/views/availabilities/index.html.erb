@@ -34,18 +34,18 @@
   <div class="panel">
     <% @appointments.each do |a| %>
       <div class="appointment">
-        <p>
+        <div class="mentor">
+          <%= image_tag a.mentor.gravatar_url %>
           <%= link_to_user(a.mentor) %>
-        </p>
-        <p>
-          <span aria-hidden="true" class="icon" data-icon="&hearts;"></span>
-        </p>
-        <p>
+        </div>
+        <span aria-hidden="true" class="icon" data-icon="&hearts;"></span>
+        <div class="mentee">
+          <%= image_tag a.mentee.gravatar_url %>
           <%= link_to_user(a.mentee) %>
-        </p>
-        <p>
+        </div>
+        <div class="when">
           in <%= distance_of_time_in_words(Time.now, a.start_time) %> at <%= a.location %>
-        </p>
+        </div>
       </div>
     <% end %>
   </div>
