@@ -1,10 +1,3 @@
-<!--
-<h2>Upcoming Events</h2>
-<div class="panel">
-  <p><span aria-hidden="true" class="icon" data-icon="&hearts;"></span>Mock Interview Night in Chicago is Tuesday, September 24 from 5:30 until 7:30.  Email <a href="mailto:alex@devbootcamp.com">Alex</a> if you are avalible to help out with this event.</p>
-</div>
--->
-
 <div id="availabilities">
   <h2>Available Mentoring Opportunities</h2>
 
@@ -29,8 +22,9 @@
   <% end %>
 </div>
 
+<% unless @appointments.empty? %>
 <div id="appointments">
-  <% unless @appointments.empty? %><h2>Upcoming Mentoring Appointments</h2><% end %>
+  <h2>Upcoming Mentoring Appointments</h2>
   <div class="panel">
     <% @appointments.each do |a| %>
       <div class="appointment">
@@ -50,6 +44,7 @@
     <% end %>
   </div>
 </div>
+<% end %>
 
 <div id="featured_mentors">
   <h2>Top Mentors</h2>
