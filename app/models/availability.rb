@@ -2,6 +2,7 @@ class Availability < ActiveRecord::Base
   attr_accessor :duration
 
   belongs_to :mentor, :class_name => "User"
+  has_many :appointment_requests
 
   validates :start_time, :presence => true
 

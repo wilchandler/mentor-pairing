@@ -5,11 +5,10 @@ class AppointmentsController < ApplicationController
     availability = mentor.availabilities.find_by_id(params[:availability_id])
 
     if availability
-      appointment = Appointment.create!(:mentee => mentee, :mentor => mentor, :availability => availability)
-      mentee.send_appointment_confirmation(appointment)
+      AppointmentFactory.create!(availability, mentee, mentor)
       flash[:notice] = "An appointment has been created for you and #{mentee.name}. Enjoy!"
     else
-      flash[:notice] = "This time is no longer available. Please create more availability."
+      flash[:notice] = "This time is no longer available. Please create more mentoring availability."
     end
 
     redirect_to edit_user_path(mentor.activation_code)

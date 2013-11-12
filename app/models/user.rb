@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     UserMailer.appointment_confirmation(appointment).deliver
   end
 
+  def send_appointment_rejection(availability)
+    UserMailer.appointment_rejection(availability, self).deliver
+  end
+
   private
 
   def create_activation_code

@@ -28,4 +28,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => @mentee.email, :subject => "#{@mentor.name} has agreed to learn with you!")
   end
 
+  def appointment_rejection(availability, mentee)
+    @availability = availability
+    @mentor = availability.mentor
+    @mentee = mentee
+
+    mail(:to => @mentee.email, :subject => "#{@mentor.name} isn't available at the time you requested")
+  end
 end
