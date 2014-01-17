@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :availability do
     timezone "UTC"
     duration 30
-    start_time  DateTime.new(2014, 1, 1)
+    start_time  1.week.from_now
     association :mentor, factory: :mentor
   end
 end
