@@ -166,7 +166,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails
-  compass-rails (~> 2.0.alpha.0)
+  compass-rails
   factory_girl_rails
   faker
   gravtastic
