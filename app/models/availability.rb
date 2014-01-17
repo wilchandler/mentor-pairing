@@ -1,4 +1,6 @@
 class Availability < ActiveRecord::Base
+  include LocaltimeAdjustment
+
   attr_accessor :duration
 
   belongs_to :mentor, :class_name => "User"

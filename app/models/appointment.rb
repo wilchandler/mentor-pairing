@@ -1,4 +1,6 @@
 class Appointment < ActiveRecord::Base
+  include LocaltimeAdjustment
+
   attr_accessor :availability
 
   belongs_to :mentor, :class_name => "User"

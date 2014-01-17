@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131002072808) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "appointment_requests", force: true do |t|
     t.integer  "availability_id"
     t.integer  "mentee_id"
@@ -30,16 +27,16 @@ ActiveRecord::Schema.define(version: 20131002072808) do
     t.datetime "end_time"
     t.string   "timezone"
     t.string   "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "availabilities", force: true do |t|
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "mentor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "timezone"
     t.string   "location"
   end
@@ -59,8 +56,8 @@ ActiveRecord::Schema.define(version: 20131002072808) do
     t.string   "last_name"
     t.string   "activation_code"
     t.boolean  "activated"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "twitter_handle"
     t.text     "bio"
     t.string   "interests"
