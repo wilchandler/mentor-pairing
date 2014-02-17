@@ -13,4 +13,29 @@ class AppointmentsController < ApplicationController
 
     redirect_to edit_user_path(mentor.activation_code)
   end
+
+  def feedback
+    @feedback_giver = User.find_by_activation_code(params[:user_code])
+    @appointment = Appointment.find_by_id_and_user(params[:appointment_id], @feedback_giver)
+    @feedback_receiver = if @feedback_giver == @appointment.mentor
+                           @appointment.mentee
+                         else
+                           @appointment.mentor
+                         end
+  end
+
+  def accept_feedback
+    @feedback_giver = User.find_by_activation_code(params[:user_code])
+    @appointment = Appointment.find_by_id_and_user(params[:appointment_id], @feedback_giver)
+    @feedback_receiver = if @feedback_giver == @appointment.mentor
+                           @appointment.mentee
+                         else
+                           @appointment.mentor
+                         end
+
+    AppointmentFeedback.create!(:appointment => @appointment,
+                                :feedback_giver => @feedback_giver,
+                                :feedback_receiver => @feedback_receiver,
+                                :text => params[:feedback][:text])
+  end
 end

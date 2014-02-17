@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131002072808) do
+ActiveRecord::Schema.define(version: 20140217220637) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "appointment_feedbacks", force: true do |t|
+    t.integer  "appointment_id",       null: false
+    t.integer  "feedback_giver_id",    null: false
+    t.integer  "feedback_receiver_id", null: false
+    t.text     "text",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "appointment_requests", force: true do |t|
     t.integer  "availability_id"

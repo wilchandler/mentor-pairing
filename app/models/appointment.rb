@@ -17,6 +17,15 @@ class Appointment < ActiveRecord::Base
     where("end_time > ?", Time.now)
   }
 
+  def self.find_by_id_and_user(appointment_id, user)
+    appointment_arel = Appointment.arel_table
+    Appointment.where(:id => appointment_id).
+                where(
+                  appointment_arel[:mentor_id].eq(user.id).
+                  or(appointment_arel[:mentee_id].eq(user.id))
+                ).first
+  end
+
   private
 
   def parse_availability

@@ -68,4 +68,23 @@ describe Appointment do
 
   end
 
+  context ".find_by_id_and_user" do
+    it "returns an appointment when the ID matches and the user matches one of the users" do
+      appointment = FactoryGirl.create(:appointment)
+
+      expect(
+        Appointment.find_by_id_and_user(appointment.id, appointment.mentor)
+      ).to eq(appointment)
+    end
+
+    it "returns nil if the appointment does not match the provided user" do
+      appointment = FactoryGirl.create(:appointment)
+      some_other_user = FactoryGirl.create(:user)
+
+      expect(
+        Appointment.find_by_id_and_user(appointment.id, some_other_user)
+      ).to eq(nil)
+    end
+  end
+
 end
