@@ -1,0 +1,7 @@
+Hey <%= @giver.name %>!
+
+How did your pairing session with <%= @receiver.name %> go? Please take a 
+minute and provide some feedback for them. We'll pass it along to them for you.
+
+Feedback link:
+<%= new_appointment_feedback_url(@giver.activation_code, :appointment_id => @appointment.id) %>
