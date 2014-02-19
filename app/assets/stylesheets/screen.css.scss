@@ -172,6 +172,12 @@ footer {
       color: $foreground;
     }
   }
+
+  &.feedback {
+    label { display: block; }
+    textarea { width: 95%; }
+    form { margin: 20px 0; }
+  }
 }
 
 .alert {

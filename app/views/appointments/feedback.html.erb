@@ -1,9 +1,14 @@
-<div class="panel">
+<div class="panel feedback">
   <h2>Leave Feedback for <%= @feedback_receiver.name %></h2>
 
   <form action="<%= appointment_feedback_path(@feedback_giver.activation_code, :appointment_id => @appointment.id) %>" method="POST">
-    <label for="feedback_text">Feedback</label>
-    <textarea id="feedback_text" name="feedback[text]"></textarea>
-    <input type="submit" value="Submit Feedback" />
+    <div>
+      <label for="feedback_text">Feedback</label>
+      <textarea id="feedback_text" name="feedback[text]"></textarea>
+    </div>
+
+    <div>
+      <input type="submit" value="Submit Feedback" />
+    </div>
   </form>
 </div>
