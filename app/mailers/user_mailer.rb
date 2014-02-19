@@ -43,4 +43,9 @@ class UserMailer < ActionMailer::Base
 
     mail(:to => giver.email, :subject => "#{@receiver.name} would like feedback about your session")
   end
+
+  def new_feedback_notification(feedback)
+    @feedback = feedback
+    mail(:to => feedback.feedback_receiver.email, :subject => "You have new feedback from a pairing session")
+  end
 end

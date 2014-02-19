@@ -2,6 +2,8 @@ require "spec_helper"
 
 feature "User leaves Appointment Feedback" do
   context "when a user provides the proper code and appointment id" do
+    before(:each) { ActionMailer::Base.deliveries.clear }
+
     let(:appointment) { FactoryGirl.create(:appointment) }
     let(:mentor) { appointment.mentor }
     let(:student) { appointment.mentee }
@@ -21,6 +23,16 @@ feature "User leaves Appointment Feedback" do
       expect {
         click_button "Submit Feedback"
       }.to change(AppointmentFeedback, :count).by(1)
+    end
+
+    it "sends the feedback receiever a notification upon submission" do
+      visit new_appointment_feedback_path(mentor.activation_code,
+                                          :appointment_id => appointment.id)
+
+      fill_in "Feedback", :with => "Such and such was really great"
+      click_button "Submit Feedback"
+
+      expect(ActionMailer::Base.deliveries.last.to).to include student.email
     end
   end
 

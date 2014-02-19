@@ -33,9 +33,10 @@ class AppointmentsController < ApplicationController
                            @appointment.mentor
                          end
 
-    AppointmentFeedback.create!(:appointment => @appointment,
-                                :feedback_giver => @feedback_giver,
-                                :feedback_receiver => @feedback_receiver,
-                                :text => params[:feedback][:text])
+    feedback = AppointmentFeedback.create!(:appointment => @appointment,
+                                           :feedback_giver => @feedback_giver,
+                                           :feedback_receiver => @feedback_receiver,
+                                           :text => params[:feedback][:text])
+    UserMailer.new_feedback_notification(feedback).deliver
   end
 end
