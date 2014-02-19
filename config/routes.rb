@@ -9,6 +9,10 @@ MentorPairing::Application.routes.draw do
   root :to => "availabilities#index"
 
   resources :availabilities
-  resources :users
+  resources :users do
+    member do
+      get :feedback
+    end
+  end
   resources :appointment_requests
 end

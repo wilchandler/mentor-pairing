@@ -23,4 +23,13 @@ feature "User leaves Appointment Feedback" do
       }.to change(AppointmentFeedback, :count).by(1)
     end
   end
+
+  context "when feedback has been given" do
+    it "the feedback receiver can view their feedback in their profile" do
+      feedback = FactoryGirl.create(:appointment_feedback)
+
+      visit feedback_user_path(feedback.feedback_receiver.activation_code)
+      page.should have_text(feedback.text)
+    end
+  end
 end
