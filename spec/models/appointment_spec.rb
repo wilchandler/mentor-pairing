@@ -87,4 +87,16 @@ describe Appointment do
     end
   end
 
+  context ".recently_ended" do
+    it "finds appointments that should have ended in the last hour" do
+      recently_ended_availability = FactoryGirl.create(:availability,
+                                      :start_time => 90.minutes.ago,
+                                      :duration => 60)
+      recently_ended = FactoryGirl.create(:appointment, :availability => recently_ended_availability)
+      in_the_future = FactoryGirl.create(:appointment)
+
+      expect(Appointment.recently_ended).to include(recently_ended)
+      expect(Appointment.recently_ended).to_not include(in_the_future)
+    end
+  end
 end
