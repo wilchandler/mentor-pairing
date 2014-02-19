@@ -172,6 +172,30 @@ footer {
       color: $foreground;
     }
   }
+
+  &.feedback {
+    label { display: block; }
+    textarea { width: 95%; }
+    form { margin: 20px 0; }
+  }
+
+  &.user-feedback {
+    tr.other-row { background-color: #EEE; }
+    th, td { padding: 10px; }
+    th {
+      text-align: left;
+      font-weight: bold;
+    }
+    td {
+      vertical-align: top;
+
+      p { margin-top: 0; }
+    }
+    .appointment {
+      span { display: block; }
+      .giver { font-style: oblique; }
+    }
+  }
 }
 
 .alert {

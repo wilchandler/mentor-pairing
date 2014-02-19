@@ -1,0 +1,25 @@
+<div class="panel user-feedback">
+  <div>
+    <h2>Feedback for you</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Appointment</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @feedback_for_user.each do |feedback| %>
+        <tr class="<%= cycle("", "other-row") %>">
+          <td class="appointment">
+            <span class="time"><%= feedback.appointment.start_time.strftime("%b %d %I:%M%p") %></span>
+            <span class="giver"><%= feedback.feedback_giver.name %></span>
+          </td>
+          <td><%= simple_format(feedback.text) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

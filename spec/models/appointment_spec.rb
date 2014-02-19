@@ -68,4 +68,35 @@ describe Appointment do
 
   end
 
+  context ".find_by_id_and_user" do
+    it "returns an appointment when the ID matches and the user matches one of the users" do
+      appointment = FactoryGirl.create(:appointment)
+
+      expect(
+        Appointment.find_by_id_and_user(appointment.id, appointment.mentor)
+      ).to eq(appointment)
+    end
+
+    it "returns nil if the appointment does not match the provided user" do
+      appointment = FactoryGirl.create(:appointment)
+      some_other_user = FactoryGirl.create(:user)
+
+      expect(
+        Appointment.find_by_id_and_user(appointment.id, some_other_user)
+      ).to eq(nil)
+    end
+  end
+
+  context ".recently_ended" do
+    it "finds appointments that should have ended in the last hour" do
+      recently_ended_availability = FactoryGirl.create(:availability,
+                                      :start_time => 90.minutes.ago,
+                                      :duration => 60)
+      recently_ended = FactoryGirl.create(:appointment, :availability => recently_ended_availability)
+      in_the_future = FactoryGirl.create(:appointment)
+
+      expect(Appointment.recently_ended).to include(recently_ended)
+      expect(Appointment.recently_ended).to_not include(in_the_future)
+    end
+  end
 end

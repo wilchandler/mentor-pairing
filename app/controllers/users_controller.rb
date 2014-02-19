@@ -28,4 +28,9 @@ class UsersController < ApplicationController
         end
       end
   end
+
+  def feedback
+    @user = User.find_by_activation_code(params[:id])
+    @feedback_for_user = @user.received_feedbacks.order("created_at DESC")
+  end
 end

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :appointment_requests, :foreign_key => :mentee_id
   has_many :received_kudos, :foreign_key => :mentor_id, :class_name => 'Kudo'
   has_many :given_kudos, :foreign_key => :mentee_id, :class_name => 'Kudo'
+  has_many :received_feedbacks, :foreign_key => :feedback_receiver_id, :class_name => "AppointmentFeedback"
 
   validates_uniqueness_of :email
 
