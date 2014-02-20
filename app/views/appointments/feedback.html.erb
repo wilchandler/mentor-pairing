@@ -4,7 +4,7 @@
   <form action="<%= appointment_feedback_path(@feedback_giver.activation_code, :appointment_id => @appointment.id) %>" method="POST">
     <div>
       <label for="feedback_text">Feedback</label>
-      <textarea id="feedback_text" name="feedback[text]"></textarea>
+      <textarea id="feedback_text" name="feedback[text]" placeholder="Type your feedback here.  Good feedback is specific, actionable, and kind.  Try to write two paragraphs: one positive and one constructive."></textarea>
     </div>
 
     <div>
