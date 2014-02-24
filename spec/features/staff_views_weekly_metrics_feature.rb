@@ -11,7 +11,7 @@ feature "Staff Views Weekly Metrics" do
     
     visit weekly_metrics_path
     
-    page.should have_content("10 appointments this week")
+    expect(page).to have_content("10 appointments this week")
   end
 
   scenario "display the metrics for the week of an arbitrary date" do
@@ -20,7 +20,7 @@ feature "Staff Views Weekly Metrics" do
 
     visit weekly_metrics_path(:for => previous_date.strftime("%Y%m%d"))
 
-    page.should have_content("Metrics for the week of #{prev_week_begin.strftime("%Y-%m-%d")}")
+    expect(page).to have_content("Metrics for the week of #{prev_week_begin.strftime("%Y-%m-%d")}")
   end
 
   scenario "displays link for last week's metrics" do
@@ -28,7 +28,7 @@ feature "Staff Views Weekly Metrics" do
 
     visit weekly_metrics_path
 
-    page.should have_link(nil, :href => weekly_metrics_path(:for => last_week.strftime("%Y%m%d")))
+    expect(page).to have_link(nil, :href => weekly_metrics_path(:for => last_week.strftime("%Y%m%d")))
   end
 
   scenario "displays link for current week's metrics if on other week" do
@@ -37,6 +37,6 @@ feature "Staff Views Weekly Metrics" do
 
     visit weekly_metrics_path(:for => previous_date.strftime("%Y%m%d"))
 
-    page.should have_link(nil, :href => weekly_metrics_path)
+    expect(page).to have_link(nil, :href => weekly_metrics_path)
   end
 end
