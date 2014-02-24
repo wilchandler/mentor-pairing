@@ -1,0 +1,13 @@
+<div class="panel">
+  <div>
+    <h2>
+      Metrics for the week of 
+      <%= @range.begin.strftime("%Y-%m-%d") %> - <%= @range.end.strftime("%Y-%m-%d") %>
+    </h2>
+  </div>
+
+  <div>
+    <span class="weekly-total-count"><%= @total_appointments_count %></span>
+    <%= "appointment".pluralize(@total_appointments_count) %> this week
+  </div>
+</div>
