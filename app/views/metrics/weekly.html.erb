@@ -1,0 +1,19 @@
+<div class="panel">
+  <div>
+    <h2>
+      Metrics for the week of 
+      <%= @metrics.starting.strftime("%Y-%m-%d") %> - <%= @metrics.ending.strftime("%Y-%m-%d") %>
+    </h2>
+    <div>
+      <%= link_to "Last Week's Metrics", weekly_metrics_path(:for => 1.week.ago(@metrics.for_week_of).strftime("%Y%m%d")) %>
+      <% unless @metrics.has_included_date?(Time.now) %>
+      <%= link_to "Current Week's Metrics", weekly_metrics_path %>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <span class="weekly-total-count"><%= @metrics.total_appointments %></span>
+    <%= "appointment".pluralize(@metrics.total_appointments) %> this week
+  </div>
+</div>

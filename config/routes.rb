@@ -8,6 +8,8 @@ MentorPairing::Application.routes.draw do
   post "/users/findmentor", :to => "users#find_mentor"
   root :to => "availabilities#index"
 
+  get "/weekly", :to => "metrics#weekly", :as => "weekly_metrics"
+
   resources :availabilities
   resources :users do
     member do
