@@ -33,7 +33,7 @@ class AvailabilitiesController < ApplicationController
                                          'start_time(5i)', :start_time,
                                          :duration, :timezone, :location,
                                          :setup_recurring, :recur_weekly,
-                                         :recur_num)
+                                         :recur_num, :city)
   end
 
   def format_start_time(time_params)
