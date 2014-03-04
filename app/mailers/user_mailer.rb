@@ -48,4 +48,9 @@ class UserMailer < ActionMailer::Base
     @feedback = feedback
     mail(:to => feedback.feedback_receiver.email, :subject => "You have new feedback from a pairing session")
   end
+
+  def management_link(user)
+    @user = user
+    mail(:to => user.email, :subject => "Your Pairing is Caring Managment Link")
+  end
 end

@@ -304,6 +304,26 @@ footer {
   }
 }
 
+#manage {
+  @media screen and (min-width: 720px) {
+    @include span-columns(4 omega, 12);
+    @include in-the-side-bar;
+  }
+
+  @media screen and (max-width: 719px) {
+    @include span-columns(12, 12);
+    @include in-the-main-section;
+  }
+
+  .panel {
+    text-align: left;
+
+    .icon {
+      margin-right: .5EM;
+    }
+  }
+}
+
 /* $TYPOGRAPHY ****************************************************************/
 
 h1 {

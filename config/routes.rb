@@ -12,6 +12,10 @@ MentorPairing::Application.routes.draw do
 
   resources :availabilities
   resources :users do
+    collection do
+      get :manage
+      post :manage, :to => "users#send_manage_link"
+    end
     member do
       get :feedback
     end
