@@ -4,6 +4,7 @@ class ActivationsController < ApplicationController
     if user
       unless user.activated?
         user.update_attribute(:activated, true)
+        UserMailer.management_link(user).deliver
         flash[:notice] = "Congrats, you are a real person! Bookmark this page if you want to manage your mentoring appointments."
       end
     else

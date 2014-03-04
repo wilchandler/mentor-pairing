@@ -1,5 +1,6 @@
 MentorPairing::Application.routes.draw do
-  get "/activations/:code/user", :to => "activations#user"
+  get "/activations/:code/user", :to => "activations#user",
+    :as => "activate_user"
   get "/appointments/:code/create", :to => "appointments#create"
   get "/appointments/:user_code/feedback",
     :to => "appointments#feedback", :as => "new_appointment_feedback"
