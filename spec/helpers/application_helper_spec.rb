@@ -5,7 +5,6 @@ class FakeApplicationHelper
 end
 
 describe ApplicationHelper do
-  subject(:helper) { FakeApplicationHelper.new }
   def stub_link_to(symbol, date, value)
     helper.stub(:link_to).with(symbol, month: date.strftime("%Y-%m-01")).and_return(value)
   end
@@ -23,6 +22,28 @@ describe ApplicationHelper do
       stub_link_to(">", @date.end_of_month + 1, "next_month_link")
       link = helper.month_link(">", @date.end_of_month + 1)
       expect(link).to eq("next_month_link")
+    end
+  end
+  
+  context "#appointment_time_in_words" do
+    def make_appointment(time = 7.days.from_now)
+      availability = FactoryGirl.create(:availability, :start_time => time, :duration => 60)
+      FactoryGirl.create(:appointment, :availability => availability)
+    end
+
+    it "displays the distance in time from now" do
+      appointment = make_appointment
+      expect(helper.appointment_time_in_words(appointment)).to include("7 days")
+    end
+
+    it "displays 'from now' for future appointments" do
+      appointment = make_appointment
+      expect(helper.appointment_time_in_words(appointment)).to include("from now")
+    end
+
+    it "displays 'ago' for appointments that have already started" do
+      appointment = make_appointment(5.minutes.ago)
+      expect(helper.appointment_time_in_words(appointment)).to include("ago")
     end
   end
 end

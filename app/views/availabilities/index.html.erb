@@ -38,7 +38,7 @@
           <%= link_to_user(a.mentee) %>
         </p>
         <p>
-          in <%= distance_of_time_in_words(Time.now, a.start_time) %> at <%= a.location %>
+          <%= appointment_time_in_words(a) %> at <%= a.location %>
         </p>
       </div>
     <% end %>

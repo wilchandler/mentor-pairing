@@ -23,4 +23,9 @@ module ApplicationHelper
   def month_link(symbol, month)
     link_to symbol, :month => month.strftime("%Y-%m-01")
   end
+
+  def appointment_time_in_words(appointment)
+    words = distance_of_time_in_words(Time.now, appointment.start_time)
+    words + (appointment.start_time > Time.now ? " from now" : " ago")
+  end
 end
