@@ -17,7 +17,9 @@
 	  </nav>
 	</header>
 
-	<p class="alert"><%= flash[:notice] %></p>
+  <% unless flash.empty? %>
+  <p class="alert"><%= flash[:notice] %></p>
+  <% end %>
 
 	<section class="page">
 		<%= yield %>
