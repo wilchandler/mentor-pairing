@@ -1,0 +1,12 @@
+<div class="panel">
+  <p>
+    To resend your management link, fill in your email address below.
+  </p>
+  <%= form_tag manage_users_path do %>
+  <div>
+    <label for="email">Email</label>
+    <%= text_field_tag :email %>
+    <%= submit_tag "Submit" %>
+  </div>
+  <% end %>
+</div>

@@ -199,10 +199,12 @@ footer {
 }
 
 .alert {
-	@include container;
-	color: #fff;
-	margin-bottom: 0;
-	margin-top: 0;
+  @include container;
+  color: #fff;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 10px;
+  border-bottom: 1px solid lighten($base, 10%);
 }
 
 .left {
@@ -285,6 +287,26 @@ footer {
 }
 
 #featured_mentors {
+  @media screen and (min-width: 720px) {
+    @include span-columns(4 omega, 12);
+    @include in-the-side-bar;
+  }
+
+  @media screen and (max-width: 719px) {
+    @include span-columns(12, 12);
+    @include in-the-main-section;
+  }
+
+  .panel {
+    text-align: left;
+
+    .icon {
+      margin-right: .5EM;
+    }
+  }
+}
+
+#manage {
   @media screen and (min-width: 720px) {
     @include span-columns(4 omega, 12);
     @include in-the-side-bar;

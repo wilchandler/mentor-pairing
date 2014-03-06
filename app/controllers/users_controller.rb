@@ -33,4 +33,16 @@ class UsersController < ApplicationController
     @user = User.find_by_activation_code(params[:id])
     @feedback_for_user = @user.received_feedbacks.order("created_at DESC")
   end
+
+  def send_manage_link
+    user = User.find_by(email: params[:email])
+    if user
+      UserMailer.management_link(user).deliver
+      flash[:notice] = "Management link sent."
+      redirect_to root_path
+    else
+      flash.now[:notice] = "User could not be found"
+      render :manage
+    end
+  end
 end
