@@ -30,7 +30,32 @@
       <label>Date &amp; time available for mentoring</label>
       <%= text_field_tag 'availability[start_time_1s]', Date.current, :name => 'availability[start_time(1s)]' %>
       <%= time_select :availability, :start_time, :ignore_date => true %>
+
+      <div style="margin-left: 180px;" id="availability_recurrence">
+        <div>
+          <input type="checkbox" name="availability[setup_recurring]" value="1" class="setup_recurrence" id="availability_setup_recurring" />
+          Offer this availability every
+          <select name="availability[recur_weekly]" id="availability_recur_weekly">
+            <option value="1">week</option>
+            <option value="2">2 weeks</option>
+            <option value="4">month</option>
+          </select>,
+          <select name="availability[recur_num]" id="availability_recur_num">
+            <%= options_for_select(1...10, 3) %>
+          </select>
+          more times.
+        </div>
+        <div class="recurrence_pattern" style="display: none"></div>
+        <script type="text/html" class="template">
+        <span>
+          You would be offering this appointment on
+          <span class="dates_recurring"></span>
+          at <span class="time_recurring"></span>
+        </span>
+        </script>
+      </div>
     </div>
+
     <div class="field"><label>Duration in minutes</label><%= text_field :availability, :duration %></div>
     <div class="field"><label>Timezone</label><%= time_zone_select(:availability, :timezone, ActiveSupport::TimeZone.us_zones, default: "Central Time (US & Canada)") %></div>
     <div class="field"><label>Location</label><%= text_field :availability, :location %></div>
