@@ -88,7 +88,9 @@ describe MakesRecurringAvailabilities do
   
       maker.make_availabilities
       p "expected #{(attributes[:start_time] + 14.days).to_f}"
-      expect(Availability.last.start_time).to eq(attributes[:start_time] + 14.days)
+      p Availability.last.start_time.class
+      p (attributes[:start_time] + 14.days).class
+      expect(Availability.last.start_time.to_f).to eq((attributes[:start_time] + 14.days).to_f)
     end
   end
 
@@ -101,7 +103,7 @@ describe MakesRecurringAvailabilities do
   
       maker.make_availabilities
       p "expected #{(attributes[:start_time] + 14.days).to_f}"
-      expect(Availability.last.start_time).to eq(attributes[:start_time] + 14.days)
+      expect(Availability.last.start_time.to_f).to eq((attributes[:start_time] + 14.days).to_f)
     end
   end
 
@@ -114,7 +116,7 @@ describe MakesRecurringAvailabilities do
   
       maker.make_availabilities
       p "expected #{(attributes[:start_time] + 28.days).to_f}"
-      expect(Availability.last.start_time).to eq(attributes[:start_time] + 28.days)
+      expect(Availability.last.start_time.to_f).to eq((attributes[:start_time] + 28.days).to_f)
     end
   end
 end
