@@ -87,7 +87,7 @@ describe MakesRecurringAvailabilities do
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
   
       maker.make_availabilities
-      p attributes[:start_time]
+      p "expected #{attributes[:start_time].to_f}"
       expect(Availability.last.start_time).to eq(attributes[:start_time] + 14.days)
     end
   end
@@ -100,6 +100,7 @@ describe MakesRecurringAvailabilities do
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
   
       maker.make_availabilities
+      p "expected #{attributes[:start_time].to_f}"
       expect(Availability.last.start_time).to eq(attributes[:start_time] + 14.days)
     end
   end
@@ -112,6 +113,7 @@ describe MakesRecurringAvailabilities do
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
   
       maker.make_availabilities
+      p "expected #{attributes[:start_time].to_f}"
       expect(Availability.last.start_time).to eq(attributes[:start_time] + 28.days)
     end
   end

@@ -11,7 +11,7 @@ class MakesRecurringAvailabilities
       number_of_recurrences.times do |i|
         recurred_availability = @mentor.availabilities.build(params_without_recurrence)
         recurred_availability.start_time += recurrence_factor * (i + 1)
-        p recurred_availability.start_time.to_f
+        p "actual: #{recurred_availability.start_time.to_f}"
         recurred_availability.save!
       end
     else
