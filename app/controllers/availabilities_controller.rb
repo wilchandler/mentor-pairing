@@ -6,7 +6,7 @@ class AvailabilitiesController < ApplicationController
 
   def create
     mentor = find_or_activate_by_email
-    mentor.availabilities.create!(format_start_time(availability_params))
+    MakesRecurringAvailabilities.new(mentor, format_start_time(availability_params)).make_availabilities
     redirect_to availabilities_path
   end
 
@@ -29,7 +29,11 @@ class AvailabilitiesController < ApplicationController
   private
 
   def availability_params
-    params.require(:availability).permit('start_time(1s)', 'start_time(4i)', 'start_time(5i)', :start_time, :duration, :timezone, :location)
+    params.require(:availability).permit('start_time(1s)', 'start_time(4i)',
+                                         'start_time(5i)', :start_time,
+                                         :duration, :timezone, :location,
+                                         :setup_recurring, :recur_weekly,
+                                         :recur_num)
   end
 
   def format_start_time(time_params)

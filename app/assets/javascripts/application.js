@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
+//= require availabilities/availability_recurrence
+//= require availabilities/new_form
+//= require availabilities/new
 //= require_tree .

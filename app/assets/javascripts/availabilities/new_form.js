@@ -45,4 +45,5 @@ $(document).ready(function() {
 
   $('#email').on('blur', FindByEmail.find)
 
+  AvailabilityRecurrence.init("#availability_recurrence")
 });
