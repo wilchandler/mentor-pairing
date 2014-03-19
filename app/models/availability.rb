@@ -17,6 +17,12 @@ class Availability < ActiveRecord::Base
     where("start_time > ?", Time.now)
   }
 
+  scope :abandoned, -> {
+    includes(:mentor).
+    where("users.activated" => true).
+    where("start_time < ?", Time.now)
+  }
+
   private
 
   def adjust_for_timezone

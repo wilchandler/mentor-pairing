@@ -39,4 +39,27 @@ feature "Staff Views Weekly Metrics" do
 
     expect(page).to have_link(nil, :href => weekly_metrics_path)
   end
+
+  context "when viewing abandoned availabilties" do
+    context "and an abandoned availability exists" do
+      scenario "displays number of current week's abandoned availabilties" do
+        arbitrary_date = Time.new(2014, 3, 19)
+        FactoryGirl.create(:availability,
+                           :start_time => 1.day.ago(arbitrary_date),
+                           :duration => 60)
+
+        visit weekly_metrics_path(:for => arbitrary_date.strftime("%Y%m%d"))
+
+        expect(page).to have_content("1 abandoned availability this week")
+      end
+    end
+
+    context "and there are no abandoned availabilities" do
+      scenario "displays 0 abandoned availabilties" do
+        visit weekly_metrics_path
+
+        expect(page).to have_content("0 abandoned availabilities this week")
+      end
+    end
+  end
 end
