@@ -16,4 +16,9 @@
     <span class="weekly-total-count"><%= @metrics.total_appointments %></span>
     <%= "appointment".pluralize(@metrics.total_appointments) %> this week
   </div>
+
+  <div>
+    <span class="weekly-total-count"><%= @metrics.total_abandoned_availabilties %></span>
+    abandoned <%= "availability".pluralize(@metrics.total_abandoned_availabilties) %> this week
+  </div>
 </div>

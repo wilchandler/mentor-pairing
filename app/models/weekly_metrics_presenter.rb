@@ -26,4 +26,8 @@ class WeeklyMetricsPresenter
   def has_included_date?(date)
     (starting..ending).cover?(date)
   end
+
+  def total_abandoned_availabilties
+    Availability.abandoned.where(:start_time => (starting..ending)).count
+  end
 end

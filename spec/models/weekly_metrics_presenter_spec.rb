@@ -57,4 +57,20 @@ describe WeeklyMetricsPresenter do
       expect(wm_presenter).to have_included_date(rand(this_week))
     end
   end
+
+  context "when calculating abandoned availabilities" do
+    it "returns the count of abandoned availabilities from the db" do
+      arbitrary_date = Time.new(2014, 3, 19)
+      expected_count = rand(0..5)+1
+      expected_count.times do
+        FactoryGirl.create(:availability,
+                           :start_time => 1.day.ago(arbitrary_date),
+                           :duration => 60
+        )
+      end
+
+      wm_presenter = WeeklyMetricsPresenter.new("20140319")
+      expect(wm_presenter.total_abandoned_availabilties).to eq(expected_count)
+    end
+  end
 end
