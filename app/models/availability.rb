@@ -1,7 +1,7 @@
 class Availability < ActiveRecord::Base
   include LocaltimeAdjustment
 
-  CITY_OPTIONS = ["Chicago", "San Francisco", "New York"]
+  CITY_OPTIONS = ["Chicago", "San Francisco", "New York", "Remote"]
 
   attr_accessor :duration
 
