@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218230153) do
+ActiveRecord::Schema.define(version: 20140325153732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140218230153) do
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "city"
     t.boolean  "feedback_sent", default: false
   end
 
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140218230153) do
     t.datetime "updated_at"
     t.string   "timezone"
     t.string   "location"
+    t.string   "city"
   end
 
   create_table "kudos", force: true do |t|

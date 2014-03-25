@@ -10,7 +10,9 @@ describe Appointment do
       @mentor = FactoryGirl.create(:mentor)
       @mentee = FactoryGirl.create(:mentee)
       @start_time = DateTime.new(2013, 1, 1)
-      availability_attributes = FactoryGirl.attributes_for(:availability, start_time: @start_time)
+      availability_attributes = FactoryGirl.attributes_for(:availability,
+        start_time: @start_time,
+        city: 'Chicago')
       @availability = @mentor.availabilities.create(availability_attributes)
       @appointment = Appointment.create(:mentor => @mentor, :mentee => @mentee, :availability => @availability)
     end
@@ -34,6 +36,10 @@ describe Appointment do
 
         it "should create a kudo object" do
           expect(@appointment.mentor.received_kudos.count).to eq(1)
+        end
+
+        it "should have a city" do
+          expect(@appointment.city).to eq(@availability.city)
         end
       end
 

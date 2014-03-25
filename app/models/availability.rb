@@ -1,12 +1,15 @@
 class Availability < ActiveRecord::Base
   include LocaltimeAdjustment
 
+  CITY_OPTIONS = ["Chicago", "San Francisco", "New York", "Remote"]
+
   attr_accessor :duration
 
   belongs_to :mentor, :class_name => "User"
   has_many :appointment_requests
 
   validates :start_time, :presence => true
+  validates :city, inclusion: {in: CITY_OPTIONS }
 
   before_save :adjust_for_timezone
   before_save :set_end_time
