@@ -105,7 +105,7 @@ function buildItem(availability, index) {
 
 
 
-function createRotater(data) {
+function createRotater(length) {
   var count = 0;
   return function() {
     $("li").hide();
@@ -114,10 +114,14 @@ function createRotater(data) {
     $("#a" + count).toggle("drop");
 
     count++;
-    if (count == data.length) {
+    if (count == length) {
       count = 0;
     }
   }
+}
+
+function chicago(availability) {
+  return !availability.location.match(/NYC|York|SF|Fran/)
 }
 
 $.ajax({
@@ -125,11 +129,14 @@ $.ajax({
     jsonpCallback: "whatever",
     dataType: "jsonp"
 }).done(function(data){
+    var count = 0;
     $(data).each(function(index, availability) {
-      $("#availabilities").append(buildItem(availability, index));
+      if (chicago(availability)) {
+        $("#availabilities").append(buildItem(availability, count++));
+      }
     });
 
-    var rotater = createRotater(data);
+    var rotater = createRotater(count);
     rotater();
     setInterval(rotater, 20000);
 })
