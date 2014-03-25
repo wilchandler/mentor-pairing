@@ -2,7 +2,7 @@ Hi <%= @mentor.name %>!
 
 <%= @mentee.name %> wants to meet with you on <%= display_availability(@availability) %>.
 
-If you want to quickly learn more about <%= @mentee.first_name %>, check out their Twitter profile: https://twitter.com/<%= @mentee.twitter_handle %>
+If you want to quickly learn more about <%= @mentee.first_name %>, check out their bio: <%= link_to @mentee.name, user_url(@mentee, :host => 'mentoring.devbootcamp.com') %>
 
 If you have any questions about the mentoring session, reach out to <%= @mentee.first_name %> at: <%= @mentee.email %>
 
