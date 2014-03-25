@@ -37,6 +37,7 @@ class Appointment < ActiveRecord::Base
     self.end_time   = availability.end_time
     self.timezone   = availability.timezone
     self.location   = availability.location
+    self.city       = availability.city
   end
 
   def kill_availability

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140218230153) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "feedback_sent", default: false
+    t.string   "city"
   end
 
   create_table "availabilities", force: true do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140218230153) do
     t.datetime "updated_at"
     t.string   "timezone"
     t.string   "location"
+    t.string   "city"
   end
 
   create_table "kudos", force: true do |t|

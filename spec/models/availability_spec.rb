@@ -6,7 +6,9 @@ describe Availability do
   describe "when first created" do
     before(:each) do
       @start_time = DateTime.new(2013, 1, 1)
-      @availability = FactoryGirl.create(:availability, start_time: @start_time)
+      @availability = FactoryGirl.create(:availability,
+        start_time: @start_time,
+        city: 'Chicago')
     end
 
     it "should have a start_time" do
@@ -21,6 +23,10 @@ describe Availability do
       it "should be 30 minutes long" do
         expect(@availability.end_time - @availability.start_time).to eq(1800)
       end
+    end
+
+    context "when validating city" do
+      it { should ensure_inclusion_of(:city).in_array(Availability::CITY_OPTIONS) }
     end
   end
 end

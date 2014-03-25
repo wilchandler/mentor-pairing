@@ -9,6 +9,7 @@ class Availability < ActiveRecord::Base
   has_many :appointment_requests
 
   validates :start_time, :presence => true
+  validates :city, inclusion: {in: CITY_OPTIONS }
 
   before_save :adjust_for_timezone
   before_save :set_end_time

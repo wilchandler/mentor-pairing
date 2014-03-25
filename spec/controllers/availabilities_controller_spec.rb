@@ -22,7 +22,8 @@ describe AvailabilitiesController do
         'start_time(1s)' => '2013-01-01',
         'start_time(4i)' => '00',
         'start_time(5i)' => '00',
-        :timezone => 'UTC'
+        :timezone => 'UTC',
+        :city => 'Chicago'
       }
       expect do
         post :create, email: mentor.email, availability: availability_params
