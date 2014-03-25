@@ -24,7 +24,8 @@ end
     start_time: 1.week.from_now,
     duration: 30,
     location: "Dev Bootcamp",
-    timezone: "Central Time (US & Canada)")
+    timezone: "Central Time (US & Canada)",
+    city: "Chicago")
 end
 
 mentee = User.create!(
