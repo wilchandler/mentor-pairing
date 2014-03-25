@@ -7,13 +7,9 @@ module ApplicationHelper
   end
 
   def display_appointment(a)
-    link_to_user(a.mentor) + " is mentoring " +
-    link_to_user(a.mentee) + " on " +
+    link_to(a.mentor) + " is mentoring " +
+    link_to(a.mentee) + " on " +
     display_availability(a)
-  end
-
-  def link_to_user(m)
-    link_to(m.name + " - #{m.total_kudos}", href_to_twitters_user(m))
   end
 
   def href_to_twitters_user(m)

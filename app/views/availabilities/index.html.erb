@@ -58,7 +58,7 @@
   <% @featured.each do |user| %>
     <p>
       <span aria-hidden="true" class="icon" data-icon="&hearts;"></span>
-      <%= link_to user.name, user_path(user) %>
+      <%= link_to user.pretty_name, user_path(user) %>
     </p>
   <% end %>
   </div>
