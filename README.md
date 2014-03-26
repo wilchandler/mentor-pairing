@@ -24,3 +24,7 @@ have Compass automatically watch for your changes, run:
 	bundle exec compass watch
 
 For more, [check out the Compass documentation](http://compass-style.org/).
+
+#### Contributing
+
+See [CONTRIBUTING](./contributing.md)
