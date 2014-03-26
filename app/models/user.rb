@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     [first_name, last_name].compact.join(" ")
   end
 
+  def pretty_name
+    "#{name} - #{total_kudos}"
+  end
+
   def send_activation
     UserMailer.user_activation(self).deliver
     self
