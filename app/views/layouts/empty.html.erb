@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pairing is Caring</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta name="viewport" content="initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<header class='main-header'>
+		<h1 class="main-header-text">
+			<a href="/">Pairing Is Caring</a>
+		</h1>
+
+		<%= yield :header %>
+	</header>
+
+  <% unless flash.empty? %>
+  <p class="alert"><%= flash[:notice] %></p>
+  <% end %>
+
+	<section class="page">
+		<%= content_for?(:content) ? yield(:content) : yield %>
+		<div class="page-footer"></div>
+	</section>
+
+	<footer>
+		<p>
+		  Made by
+		  <%= link_to "Erik", "http://allareri.github.io/" %>,
+		  <%= link_to "Dave", "http://redsquirrel.com/dave/" %>, and
+		  <a href="https://github.com/Devbootcamp/mentor-pairing/contributors">the Dev Bootcamp mentoring community</a>.
+		</p>
+	</footer>
+
+</body>
+</html>
