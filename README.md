@@ -1,5 +1,6 @@
 ![Current Build
 Status](https://travis-ci.org/Devbootcamp/mentor-pairing.png)
+[![Coverage Status](https://coveralls.io/repos/Devbootcamp/mentor-pairing/badge.png?branch=master)](https://coveralls.io/r/Devbootcamp/mentor-pairing?branch=master)
 ### Pairing is Caring
 
 This application facilitates the coordination of mentoring appointments. Anyone
