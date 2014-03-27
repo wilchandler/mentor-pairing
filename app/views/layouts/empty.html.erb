@@ -1,0 +1,17 @@
+<% content_for :head do %>
+<style>
+.main-header-img {
+	background:none;
+	min-height:0;
+}
+.main-navigation {
+	display:none;
+}
+</style>
+<% end %>
+
+<% content_for :content do %>
+<%= yield %>
+<% end %>
+
+<%= render template: "layouts/application" %>

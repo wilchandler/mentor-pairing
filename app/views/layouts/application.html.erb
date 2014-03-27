@@ -7,11 +7,15 @@
   <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 <body>
-	<header>
-		<h1><a href="/"><span>Pairing</span> <span>Is</span> <span>Caring<span></a></h1>
-	  <nav>
+	
+	<header class='main-header main-header-img'>
+		<h1 class="main-header-text">
+			<a href="/">Pairing Is Caring</a>
+		</h1>
+	  <nav class="main-navigation">
       <%= link_to "Find a mentor", availabilities_path, :class => "link", :title => "s4m" %>
       <%= link_to "Offer to mentor", new_availability_path, :class => "link", :title => "m4s" %>
 	  </nav>
@@ -22,7 +26,7 @@
   <% end %>
 
 	<section class="page">
-		<%= yield %>
+		<%= content_for?(:content) ? yield(:content) : yield %>
 		<div class="page-footer"></div>
 	</section>
 
