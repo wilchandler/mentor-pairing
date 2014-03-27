@@ -82,16 +82,21 @@ header, section, footer {
   @media screen and (max-width: 629px) {
     margin-top:2em
   }
+  position:relative;
 }
 
-.main-header-img {
-  background-image: url("heart.png");
-  background-repeat: no-repeat;
-  background-position: center 79%;
-  min-height: 270px;
+.main-header-heart {
+  $heart_width:200px;
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top:50px;
+  margin-left:-$heart_width/2;
+  height:$heart_width;
+  width:$heart_width;
 
   @media screen and (max-width: 629px) { 
-    background-position: center 64%;
+    top:114px;
   }
 }
 
@@ -101,13 +106,12 @@ header, section, footer {
 }
 
 .main-navigation {
-
   a {
     width: 220px;
   }
 
   @media screen and (min-width: 630px) {
-  	margin: 0 auto;
+  	margin: 0 auto 5em auto;
     width: 570px;
     padding: 6px 3px 3px 3px;
     overflow: auto;
