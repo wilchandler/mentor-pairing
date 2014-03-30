@@ -1,4 +1,5 @@
 class AvailabilitiesController < ApplicationController
+  include LocationHelper
 
   def new
     @availability = Availability.new(:location => "DBC")
@@ -25,6 +26,22 @@ class AvailabilitiesController < ApplicationController
     Availability.destroy(params[:id])
     redirect_to :back
   end
+
+  def remaining
+    render :layout => 'empty'
+  end
+
+  def remaining_in_city
+    city = slug_to_city(params[:city])
+    
+    @availabilities = Availability.today_in_city(city)
+
+    respond_to do |format|
+      format.html { render :layout => 'empty' }
+      format.json { render :json => build_json(@availabilities) }
+    end
+  end
+
 
   private
 

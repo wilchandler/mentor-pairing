@@ -1,0 +1,12 @@
+<%
+	remaining = @availabilities.count
+  all_taken = remaining == 0
+%>
+
+<div class="remaining-avail-hero">
+<%= all_taken ? "✓" : remaining %>
+</div>
+
+<div class="remaining-avail-subtext">
+  <%= all_taken ? "All booked" : "#{'appointment'.pluralize(remaining)} remaining" %>
+</div>

@@ -1,0 +1,9 @@
+<% Availability::PHYSICAL_LOCATIONS.each do |city| %>
+	<ul class='remaining-cities-list'>
+		<li class='remaining-cities-city'>
+			<a href="<%= remaining_availabilities_in_city_path(city_to_slug city) %>">
+				<%= city %>
+			</a>
+		</li>
+	</ul>
+<% end %>

@@ -30,4 +30,11 @@ describe AvailabilitiesController do
       end.to change{Availability.count}.by(1)
     end
   end
+
+  describe '#remaining_in_city' do
+    it 'should provide availabilities' do
+      get :remaining_in_city, :city => 'chicago'
+      assigns(:availabilities).should be_a(ActiveRecord::Relation)
+    end
+  end
 end
