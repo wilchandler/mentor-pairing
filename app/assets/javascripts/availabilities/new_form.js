@@ -1,3 +1,20 @@
+var TimeZoneHelper = {
+  setTz: function () {
+    var city = $(this).val();
+    var tz = TimeZoneHelper.cityTimezones[city];
+    if (tz) {
+      $("#availability_timezone")
+        .find("option[value='"+tz+"']")
+        .prop("selected",true);
+    }
+  },
+  cityTimezones: {
+    'Chicago':"Central Time (US & Canada)",
+    'San Francisco':"Pacific Time (US & Canada)",
+    'New York':"Eastern Time (US & Canada)"
+  }
+};
+
 var FindByEmail = {
   find: function() {
     var userEmail = {email: $('#email').val()};
@@ -46,4 +63,6 @@ $(document).ready(function() {
   $('#email').on('blur', FindByEmail.find)
 
   AvailabilityRecurrence.init("#availability_recurrence")
+
+  $("#availability_city").on("change", TimeZoneHelper.setTz);
 });
