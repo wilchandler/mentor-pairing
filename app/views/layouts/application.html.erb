@@ -1,5 +1,5 @@
 <% content_for :header do %>
-	<img class="main-header-heart" src="http://localhost:3000/assets/heart.png">
+	<%= image_tag("heart.png", :class => 'main-header-heart') %>
   <nav class="main-navigation">
     <%= link_to "Find a mentor", availabilities_path, :class => "link", :title => "s4m" %>
     <%= link_to "Offer to mentor", new_availability_path, :class => "link", :title => "m4s" %>
