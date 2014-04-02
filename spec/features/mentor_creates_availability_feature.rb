@@ -22,6 +22,20 @@ feature "Mentor creates availability" do
     end
   end
 
+  context "when displaying the availabity request" do
+    it "displays the user's full name" do
+      availability = FactoryGirl.create(:availability)
+      visit "/"
+
+      avail_panel = find_link(availability.mentor.name).find(:xpath, "ancestor::div[@class='panel']")
+      within(avail_panel) do
+        click_link "Sign up"
+      end
+
+      expect(page).to have_text(availability.mentor.name)
+    end
+  end
+
   context "when the mentor provides recurrence parameters" do
     it "persists the availabilities to the database" do
       mentor = FactoryGirl.create(:mentor)
