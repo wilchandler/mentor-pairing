@@ -1,0 +1,9 @@
+<div class="panel">
+  <p>
+    <%= link_to(appointment.mentor.name, appointment.mentor)%>
+    is mentoring
+    <%= link_to(appointment.mentee.name, appointment.mentee) %>
+    on
+    <%= display_availability(appointment) %>
+  </p>
+</div>

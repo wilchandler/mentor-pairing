@@ -7,12 +7,6 @@ module ApplicationHelper
     (a.city.nil? ? "" : " in #{a.city}.")
   end
 
-  def display_appointment(a)
-    link_to(a.mentor) + " is mentoring " +
-    link_to(a.mentee) + " on " +
-    display_availability(a)
-  end
-
   def href_to_twitters_user(m)
     "https://twitter.com/" + m.twitter_handle
   end
