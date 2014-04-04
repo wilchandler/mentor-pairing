@@ -8,8 +8,8 @@ module ApplicationHelper
   end
 
   def display_appointment(a)
-    link_to(a.mentor) + " is mentoring " +
-    link_to(a.mentee) + " on " +
+    link_to(a.mentor.name, a.mentor) + " is mentoring " +
+    link_to(a.mentee.name, a.mentee) + " on " +
     display_availability(a)
   end
 
