@@ -1,5 +1,4 @@
 class AvailabilitiesController < ApplicationController
-  include LocationHelper
 
   def new
     @availability = Availability.new(:location => "DBC")
@@ -28,13 +27,14 @@ class AvailabilitiesController < ApplicationController
   end
 
   def remaining
+    @cities = Location.all.select(&:physical?)
     render :layout => 'empty'
   end
 
   def remaining_in_city
-    city = slug_to_city(params[:city])
-    
-    @availabilities = Availability.today_in_city(city)
+    city = Location.find_by_slug(params[:city])
+
+    @availabilities = Availability.today_in_city(city.name)
 
     respond_to do |format|
       format.html { render :layout => 'empty' }

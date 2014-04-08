@@ -31,6 +31,13 @@ describe AvailabilitiesController do
     end
   end
 
+  describe '#remaining' do
+    it 'should assign physical cities' do
+      get :remaining
+      assigns(:cities).should =~ Location.all.select(&:physical?)
+    end
+  end
+
   describe '#remaining_in_city' do
     it 'should provide availabilities' do
       get :remaining_in_city, :city => 'chicago'

@@ -1,16 +1,9 @@
 class Availability < ActiveRecord::Base
   include LocaltimeAdjustment
-
-  CITIES = ["Chicago", "San Francisco", "New York", "Remote"]
-  TIMEZONES = {
-    "Chicago" => "Central Time (US & Canada)",
-    "San Francisco" => "Pacific Time (US & Canada)",
-    "New York" => "Eastern Time (US & Canada)"
-  }
-  PHYSICAL_LOCATIONS = CITIES - ['Remote']
   
-  PHYSICAL_ROUTE_CONSTRAINT = lambda do |req| 
-    Availability::PHYSICAL_LOCATIONS.include?(LocationHelper.slug_to_city(req[:city]))
+  CITY_ROUTE_CONSTRAINT = lambda do |req| 
+    loc = Location.find_by_slug(req[:city])
+    loc && loc.physical?
   end
 
   attr_accessor :duration
@@ -19,7 +12,7 @@ class Availability < ActiveRecord::Base
   has_many :appointment_requests
 
   validates :start_time, :presence => true
-  validates :city, inclusion: {in: CITIES }
+  validates :city, inclusion: {in: Location::LOCATION_NAMES }
 
   before_save :adjust_for_timezone
   before_save :set_end_time
@@ -44,14 +37,15 @@ class Availability < ActiveRecord::Base
   end
 
 
-  def self.in_city(city)
-    where(city: city)
+  def self.in_city(city_name)
+    where(city: city_name)
   end
 
-  def self.today_in_city(city)
+  def self.today_in_city(city_name)
+    tz = Location.find_by_name(city_name).tz
     visible
-      .today(TIMEZONES[city])
-      .in_city(city)
+      .today(tz)
+      .in_city(city_name)
   end
 
   private

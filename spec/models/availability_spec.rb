@@ -26,21 +26,21 @@ describe Availability do
     end
 
     context "when validating city" do
-      it { should ensure_inclusion_of(:city).in_array(Availability::CITIES) }
+      it { should ensure_inclusion_of(:city).in_array(Location::LOCATION_NAMES) }
     end
 
     describe '::today' do
       it 'should check start_time bounds for today' do
         now = Time.new(2013,12,2,0,0,0, "-05:00")
           .in_time_zone("Eastern Time (US & Canada)")
-        
+
         Time.stub(:now) { now }
 
         utc_eod = Availability.utc_eod_for_tz(now, "Central Time (US & Canada)")
 
         expect(Availability)
           .to(receive(:where)
-            .with('start_time between ? and ?', 
+            .with('start_time between ? and ?',
               now.utc.to_s,
               utc_eod.to_s))
 
@@ -63,25 +63,19 @@ describe Availability do
       end
     end
 
-    describe '::TIMEZONES' do
-      it 'should include all physical cities' do
-        Availability::TIMEZONES.keys.should =~ Availability::PHYSICAL_LOCATIONS
-      end
-    end
-
-    describe '::PHYSICAL_ROUTE_CONSTRAINT' do
+    describe '::CITY_ROUTE_CONSTRAINT' do
       it 'should reject invalid cities' do
-        Availability::PHYSICAL_ROUTE_CONSTRAINT.call(city:'atlantis')
+        Availability::CITY_ROUTE_CONSTRAINT.call(city:'atlantis')
           .should be_false
       end
 
       it 'should reject remote' do
-        Availability::PHYSICAL_ROUTE_CONSTRAINT.call(city:'remote')
+        Availability::CITY_ROUTE_CONSTRAINT.call(city:'remote')
           .should be_false
       end
 
       it 'should accept valid city' do
-        Availability::PHYSICAL_ROUTE_CONSTRAINT.call(city:'san-francisco')
+        Availability::CITY_ROUTE_CONSTRAINT.call(city:'san-francisco')
           .should be_true
       end
     end

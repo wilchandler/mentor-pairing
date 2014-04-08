@@ -16,7 +16,7 @@ MentorPairing::Application.routes.draw do
     get ':city', 
       :to => 'availabilities#remaining_in_city', 
       :as => 'remaining_availabilities_in_city',
-      :constraints => Availability::PHYSICAL_ROUTE_CONSTRAINT
+      :constraints => Availability::CITY_ROUTE_CONSTRAINT
   end
 
   resources :availabilities
