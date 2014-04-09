@@ -34,7 +34,10 @@ class AvailabilitiesController < ApplicationController
   def remaining_in_city
     city = Location.find_by_slug(params[:city])
 
-    @availabilities = Availability.today_in_city(city.name)
+    @availabilities = Availability
+      .visible
+      .today(city.tz)
+      .in_city(city.name)
 
     respond_to do |format|
       format.html { render :layout => 'empty' }

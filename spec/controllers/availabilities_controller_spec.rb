@@ -40,6 +40,9 @@ describe AvailabilitiesController do
 
   describe '#remaining_in_city' do
     it 'should provide availabilities' do
+      Availability.should_receive(:visible).and_call_original
+      Availability.should_receive(:today).with('Central Time (US & Canada)').and_call_original
+      Availability.should_receive(:in_city).with('Chicago').and_call_original
       get :remaining_in_city, :city => 'chicago'
       assigns(:availabilities).should be_a(ActiveRecord::Relation)
     end

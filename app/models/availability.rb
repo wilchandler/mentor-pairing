@@ -41,13 +41,6 @@ class Availability < ActiveRecord::Base
     where(city: city_name)
   end
 
-  def self.today_in_city(city_name)
-    tz = Location.find_by_name(city_name).tz
-    visible
-      .today(tz)
-      .in_city(city_name)
-  end
-
   private
 
   def self.utc_eod_for_tz(t, tz)
