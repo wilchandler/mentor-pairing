@@ -38,6 +38,7 @@ class AvailabilitiesController < ApplicationController
       .visible
       .today(city.tz)
       .in_city(city.name)
+      .without_appointment_requests
 
     respond_to do |format|
       format.html { render :layout => 'empty' }
