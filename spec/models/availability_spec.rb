@@ -48,6 +48,29 @@ describe Availability do
       end
     end
 
+    describe '::without_appointment_requests' do
+      let(:mentor) { FactoryGirl.create(:mentor) }
+      let(:mentee) { FactoryGirl.create(:mentee) }
+
+      it "should fetch availabilities without appointment requests" do
+        params = {
+          timezone:"UTC", 
+          start_time: Time.new(2013,12,2,0,0,0, "-05:00"),
+          mentor: mentor,
+          city: 'Chicago'
+        }
+
+        a1 = Availability.create!(params)
+        a2 = Availability.create!(params)
+        a3 = Availability.create!(params)
+        ar = AppointmentRequest.create!(:mentee => mentee, :availability => a2)
+
+        without_appointments = Availability.without_appointment_requests
+        expect(without_appointments).to include(a1,a3)
+        expect(without_appointments).to_not include(a2)
+      end
+    end
+
     describe '::utc_eod_for_tz' do
       it "should produce a locale's EOD as UTC" do
         time_in_est = Time.new(2013,12,2,0,0,0, "-05:00")

@@ -41,6 +41,11 @@ class Availability < ActiveRecord::Base
     where(city: city_name)
   end
 
+  def self.without_appointment_requests
+     joins('LEFT OUTER JOIN appointment_requests ON appointment_requests.availability_id = availabilities.id')
+     .where('appointment_requests.availability_id IS NULL')
+  end
+
   private
 
   def self.utc_eod_for_tz(t, tz)
