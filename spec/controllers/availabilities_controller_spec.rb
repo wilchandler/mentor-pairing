@@ -47,5 +47,19 @@ describe AvailabilitiesController do
       get :remaining_in_city, :city => 'chicago'
       assigns(:availabilities).should be_a(ActiveRecord::Relation)
     end
+
+    context "via regular GET request" do
+      it "should render with empty layout" do
+        get :remaining_in_city, {:city => 'chicago'}
+        expect(response).to render_template(layout: "empty")
+      end
+    end
+
+    context "via XHR GET request" do
+      it "should render without layout" do
+        xhr :get, :remaining_in_city, {:city => 'chicago'}
+        expect(response).to render_template(layout: false)
+      end
+    end
   end
 end

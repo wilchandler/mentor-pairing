@@ -40,9 +40,10 @@ class AvailabilitiesController < ApplicationController
       .in_city(city.name)
       .without_appointment_requests
 
-    respond_to do |format|
-      format.html { render :layout => 'empty' }
-      format.json { render :json => build_json(@availabilities) }
+    if request.xhr?
+      render :layout => false
+    else
+      render :layout => 'empty'
     end
   end
 
