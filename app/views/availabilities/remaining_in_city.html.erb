@@ -1,0 +1,27 @@
+<%
+	remaining = @availabilities.count
+  all_taken = remaining == 0
+%>
+
+<div class="remaining-avail">
+  <div class="remaining-avail-hero">
+  <%= all_taken ? "✓" : remaining %>
+  </div>
+
+  <div class="remaining-avail-subtext">
+    <%= all_taken ? "All booked" : "#{'appointment'.pluralize(remaining)} remaining" %>
+  </div>
+</div>
+
+<% content_for :head do %>
+<script>
+$(function () {
+  var path = location.pathname;
+  var interval = 2000;
+  var updater = new RemainingAvailabilityUpdater(".remaining-avail", path, interval);
+
+  updater.start();
+  window.updater = updater;
+});
+</script>
+<% end %>

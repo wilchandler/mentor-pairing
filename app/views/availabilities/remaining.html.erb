@@ -1,0 +1,9 @@
+<% @cities.each do |city| %>
+	<ul class='remaining-cities-list'>
+		<li class='remaining-cities-city'>
+			<a href="<%= remaining_availabilities_in_city_path(city.slug) %>">
+				<%= city.name %>
+			</a>
+		</li>
+	</ul>
+<% end %>

@@ -26,6 +26,28 @@ class AvailabilitiesController < ApplicationController
     redirect_to :back
   end
 
+  def remaining
+    @cities = Location.all.select(&:physical?)
+    render :layout => 'empty'
+  end
+
+  def remaining_in_city
+    city = Location.find_by_slug(params[:city])
+
+    @availabilities = Availability
+      .visible
+      .today(city.tz)
+      .in_city(city.name)
+      .without_appointment_requests
+
+    if request.xhr?
+      render :layout => false
+    else
+      render :layout => 'empty'
+    end
+  end
+
+
   private
 
   def availability_params

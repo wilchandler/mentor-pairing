@@ -11,7 +11,16 @@ MentorPairing::Application.routes.draw do
 
   get "/weekly", :to => "metrics#weekly", :as => "weekly_metrics"
 
+  scope "/availabilities/remaining" do
+    root to: 'availabilities#remaining', :as => 'remaining_availabilities'
+    get ':city', 
+      :to => 'availabilities#remaining_in_city', 
+      :as => 'remaining_availabilities_in_city',
+      :constraints => Availability::CITY_ROUTE_CONSTRAINT
+  end
+
   resources :availabilities
+
   resources :users do
     collection do
       get :manage
