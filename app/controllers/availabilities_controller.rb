@@ -40,10 +40,12 @@ class AvailabilitiesController < ApplicationController
       .in_city(city.name)
       .without_appointment_requests
 
-    if stale?(etag: @availabilities.pluck(:id))
-      if request.xhr?
+    if request.xhr?
+      if stale?(etag: "xhr:#{@availabilities.pluck(:id).join(',')}")
         render :layout => false
-      else
+      end
+    else
+      if stale?(etag: "html:#{@availabilities.pluck(:id).join(',')}")
         render :layout => 'empty'
       end
     end
