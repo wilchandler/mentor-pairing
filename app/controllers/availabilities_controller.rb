@@ -41,9 +41,10 @@ class AvailabilitiesController < ApplicationController
       .without_appointment_requests
 
     if stale?(etag: @availabilities.pluck(:id))
-      respond_to do |format|
-        format.js   { render :layout => false }
-        format.html { render :layout => 'empty' }
+      if request.xhr?
+        render :layout => false
+      else
+        render :layout => 'empty'
       end
     end
   end
