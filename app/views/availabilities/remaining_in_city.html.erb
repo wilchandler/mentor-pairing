@@ -17,7 +17,7 @@
 <script>
 $(function () {
   var path = location.pathname;
-  var interval = 2000;
+  var interval = 1000 * 60;
   var updater = new RemainingAvailabilityUpdater(".remaining-avail", path, interval);
 
   updater.start();
