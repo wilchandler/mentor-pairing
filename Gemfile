@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "coffee-rails"
 gem "compass-rails", "1.1.3"
 gem "jquery-rails"
 gem "jquery-ui-rails"
