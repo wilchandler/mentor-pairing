@@ -23,3 +23,7 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "coveralls", :require => false
 end
+
+group :production do
+  gem 'therubyracer'
+end
