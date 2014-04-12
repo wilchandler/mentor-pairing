@@ -120,8 +120,11 @@ function createRotater(length) {
   }
 }
 
-function chicago(availability) {
-  return !availability.location.match(/NYC|York|SF|Fran/)
+function atLocation(availability) {
+  var desiredLocation = window.location.search.substr(1);
+  var locationMap = { chicago: /Central/, nyc: /Eastern/, sf: /Pacific/};
+  var regex = locationMap[desiredLocation];
+  return availability.timezone.match(regex);
 }
 
 $.ajax({
@@ -131,7 +134,7 @@ $.ajax({
 }).done(function(data){
     var count = 0;
     $(data).each(function(index, availability) {
-      if (chicago(availability)) {
+      if (atLocation(availability)) {
         $("#availabilities").append(buildItem(availability, count++));
       }
     });
