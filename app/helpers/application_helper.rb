@@ -19,4 +19,13 @@ module ApplicationHelper
     words = distance_of_time_in_words(Time.now, appointment.start_time)
     words + (appointment.start_time > Time.now ? " from now" : " ago")
   end
+
+  # Determine whether an appointment is scheduled in future or past for _appointment.html.erb
+  def tense(start_time)
+    if Time.now < start_time
+      "is mentoring"
+    else
+      "mentored"
+    end
+  end
 end
