@@ -47,15 +47,15 @@ describe ApplicationHelper do
     end
   end
 
-  context "#tense" do
+  context "#future_or_past_tense" do
     it "returns 'is mentoring' for an appointment with a future start date" do
       start_time = 1.day.from_now
-      expect(tense(start_time)).to eq("is mentoring")
+      expect(future_or_past_tense(start_time)).to eq("is mentoring")
     end
 
     it "returns 'mentored' for an appointment with a past start date" do
       start_time = 1.day.ago
-      expect(tense(start_time)).to eq("mentored")
+      expect(future_or_past_tense(start_time)).to eq("mentored")
     end
   end
 end

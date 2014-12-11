@@ -1,7 +1,7 @@
 <div class="panel">
   <p>
     <%= link_to(appointment.mentor.name, appointment.mentor)%>
-    <%= tense(appointment.start_time) %>
+    <%= future_or_past_tense(appointment.start_time) %>
     <%= link_to(appointment.mentee.name, appointment.mentee) %>
     on
     <%= display_availability(appointment) %>
