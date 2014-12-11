@@ -3,7 +3,4 @@ Hey <%= @giver.name %>!
 How did your pairing session with <%= @receiver.name %> go? Please take a
 minute to<a href="mailto:<%=@receiver.email%>?subject=Thank you for mentoring me"> send your mentor a thank you email</a> for offering their time!
 
-Also, please provide some feedback for them at our feedback page. We'll pass it along to them for you.
-
-Feedback link:
-<%= new_appointment_feedback_url(@giver.activation_code, :appointment_id => @appointment.id) %>
+Also, please provide some feedback for them at our <a href="<%=new_appointment_feedback_url(@giver.activation_code, :appointment_id => @appointment.id)%>">feedback page</a>. We'll pass it along to them for you.
