@@ -17,6 +17,10 @@ class Appointment < ActiveRecord::Base
     where("end_time > ?", Time.now)
   }
 
+  scope :past, Proc.new {
+    where("end_time < ?", Time.now)
+  }
+
   scope :recently_ended, -> { where(:end_time => (1.hour.ago..Time.now)) }
   scope :feedback_not_sent, -> { where(:feedback_sent => false) }
   scope :ready_for_feedback, -> { recently_ended.feedback_not_sent }
