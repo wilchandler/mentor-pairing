@@ -23,3 +23,17 @@
 		<%= render @mentoring_appointments %>
 	</div>
 <% end %>
+
+<% unless @menteeing_past_appointments.empty? %>
+	<div id="menteeing-past-appointments" class="appointments">
+		<h2>My past appointments with mentors</h2>
+		<%= render @menteeing_past_appointments %>
+	</div>
+<% end %>
+
+<% unless @mentoring_past_appointments.empty? %>
+	<div id="mentoring-past-appointments" class="appointments">
+		<h2>My past appointments with mentees</h2>
+		<%= render @mentoring_past_appointments %>
+	</div>
+<% end %>
