@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @menteeing_appointments = @user.menteeing_appointments.visible.order(:start_time)
     @mentoring_appointments = @user.mentoring_appointments.visible.order(:start_time)
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @menteeing_past_appointments = @user.menteeing_appointments.past.order(start_time: :desc).limit(5)
+    @mentoring_past_appointments = @user.mentoring_appointments.past.order(start_time: :desc).limit(5)
   end
 
   def find_mentor

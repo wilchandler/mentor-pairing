@@ -19,4 +19,8 @@ module ApplicationHelper
     words = distance_of_time_in_words(Time.now, appointment.start_time)
     words + (appointment.start_time > Time.now ? " from now" : " ago")
   end
+
+  def future_or_past_tense(start_time)
+    Time.now < start_time ? "is mentoring" : "mentored"
+  end
 end
