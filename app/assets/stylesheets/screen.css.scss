@@ -95,7 +95,7 @@ header, section, footer {
   height:$heart_width;
   width:$heart_width;
 
-  @media screen and (max-width: 629px) { 
+  @media screen and (max-width: 629px) {
     top:114px;
   }
 }
@@ -157,6 +157,9 @@ footer {
 	& a {
 		font-weight: bold;
 	}
+  p:first-child {
+    min-height: 65px;
+  }
 
   a {
     background-color: #e9f193;
