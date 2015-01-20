@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby '2.2.0'
+
 gem "compass-rails", "1.1.3"
 gem "jquery-rails"
 gem "jquery-ui-rails"
