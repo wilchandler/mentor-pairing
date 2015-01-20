@@ -1,8 +1,8 @@
 module ApplicationHelper
   def display_availability(a)
     a.local_start_time.strftime("%m/%d/%Y") +
-    " from " + a.local_start_time.strftime("%I:%M%P") +
-    " to " + a.local_end_time.strftime("%I:%M%P ") + a.timezone +
+    " from " + a.local_start_time.strftime("%l:%M%P").strip +
+    " to " + a.local_end_time.strftime("%l:%M%P ") + a.timezone +
     " at " + (a.location.blank? ? "Dev Bootcamp" : a.location) +
     (a.city.nil? ? "" : " in #{a.city}.")
   end
