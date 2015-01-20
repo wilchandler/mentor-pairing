@@ -29,7 +29,9 @@
     <div class="field">
       <label>Date &amp; time available for mentoring</label>
       <%= text_field_tag 'availability[start_time_1s]', Date.current, :name => 'availability[start_time(1s)]' %>
-      <%= time_select :availability, :start_time, :ignore_date => true %>
+      <%= hour_select %>
+      <%= minute_select %>
+      <%= ampm_select %>
 
       <div style="margin-left: 180px;" id="availability_recurrence">
         <div>

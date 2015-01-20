@@ -13,12 +13,12 @@ feature "Mentor creates availability" do
       fill_in :availability_duration, with: 60
 
 
-      mentoring_time = 1.week.from_now
+      mentoring_time = 1.week.from_now.change(:hour => 18, :min => 45).beginning_of_minute
       select_datetime(mentoring_time, :availability_start_time)
 
       click_on :submit_availability
 
-      expect(page).to have_content "#{mentor.name} on #{mentoring_time.strftime("%m/%d/%Y")}"
+      expect(page).to have_content "#{mentor.name} on #{mentoring_time.strftime("%m/%d/%Y")} from 6:45pm"
     end
   end
 
@@ -68,7 +68,7 @@ feature "Mentor creates availability" do
       fill_in :twitter_handle, with: mentor.twitter_handle
       fill_in :availability_duration, with: 60
 
-      mentoring_time = 1.week.from_now
+      mentoring_time = 1.week.from_now.change(:hour => 12, :min => 45).beginning_of_minute
       second_time = mentoring_time + 7.days
       select_datetime(mentoring_time, :availability_start_time)
       check :availability_setup_recurring
@@ -77,8 +77,8 @@ feature "Mentor creates availability" do
 
       click_on :submit_availability
 
-      expect(page).to have_content "#{mentor.name} on #{mentoring_time.strftime("%m/%d/%Y")}"
-      expect(page).to have_content "#{mentor.name} on #{second_time.strftime("%m/%d/%Y")}"
+      expect(page).to have_content "#{mentor.name} on #{mentoring_time.strftime("%m/%d/%Y")} from 12:45pm"
+      expect(page).to have_content "#{mentor.name} on #{second_time.strftime("%m/%d/%Y")} from 12:45pm"
     end
   end
 end
