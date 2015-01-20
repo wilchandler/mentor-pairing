@@ -1,5 +1,5 @@
 ![Current Build
-Status](https://travis-ci.org/Devbootcamp/mentor-pairing.png)
+Status](https://travis-ci.org/Devbootcamp/mentor-pairing.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/Devbootcamp/mentor-pairing/badge.png?branch=master)](https://coveralls.io/r/Devbootcamp/mentor-pairing?branch=master)
 ### Pairing is Caring
 
