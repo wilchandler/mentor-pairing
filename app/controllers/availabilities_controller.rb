@@ -55,8 +55,9 @@ class AvailabilitiesController < ApplicationController
   private
 
   def availability_params
-    params.require(:availability).permit('start_time(1s)', 'start_time(4i)',
-                                         'start_time(5i)', :start_time,
+    params.require(:availability).permit('start_time(1s)', 'start_time(2i)',
+                                         'start_time(3i)',
+                                         :start_time,
                                          :duration, :timezone, :location,
                                          :setup_recurring, :recur_weekly,
                                          :recur_num, :city)
@@ -64,12 +65,13 @@ class AvailabilitiesController < ApplicationController
 
   def format_start_time(time_params)
     return time_params unless time_params['start_time(1s)']
-    new_time_params = time_params.clone
-    year, month, day = new_time_params.delete('start_time(1s)').split('-')
-    new_time_params['start_time(1i)'] = year
-    new_time_params['start_time(2i)'] = month
-    new_time_params['start_time(3i)'] = day
-    new_time_params
+    tp = time_params.clone
+    date = tp.delete('start_time(1s)')
+    hour = tp.delete('start_time(4i)')
+    minute = tp.delete('start_time(5i)')
+    meridian = tp.delete('start_time(6i)')
+    tp[:start_time] = DateTime.parse("#{date} #{hour}:#{minute}#{meridian}")
+    tp
   end
 
   def build_json(availabilities)
