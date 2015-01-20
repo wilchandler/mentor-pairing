@@ -9,7 +9,7 @@
 
   <% @availabilities.each do |a| %>
     <div class="panel">
-    	<p>
+    	<p class="panel-information">
     		<%= image_tag a.mentor.gravatar_url, :class => "left" %>
     		<span aria-hidden="true" class="icon" data-icon="&hearts;"></span>
     	  <%= link_to a.mentor.name, user_path(a.mentor) %>
