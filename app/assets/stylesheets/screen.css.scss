@@ -95,7 +95,7 @@ header, section, footer {
   height:$heart_width;
   width:$heart_width;
 
-  @media screen and (max-width: 629px) { 
+  @media screen and (max-width: 629px) {
     top:114px;
   }
 }
@@ -422,6 +422,10 @@ label {
 	border-top: 1px dashed #ccc;
 	padding-top: 1em;
 	margin-bottom: 2em;
+}
+
+input#first_name {
+  margin-right: 10px;
 }
 
 .addon {

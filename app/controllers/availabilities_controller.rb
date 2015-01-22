@@ -1,7 +1,7 @@
 class AvailabilitiesController < ApplicationController
 
   def new
-    @availability = Availability.new(:location => "DBC")
+    @availability = Availability.new
   end
 
   def create
