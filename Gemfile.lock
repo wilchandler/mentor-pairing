@@ -84,6 +84,7 @@ GEM
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.8.0)
+    newrelic_rpm (3.9.7.266)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     pg (0.17.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   gravtastic
   jquery-rails
   jquery-ui-rails
+  newrelic_rpm
   pg
   pry-rails
   rails

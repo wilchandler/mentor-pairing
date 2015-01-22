@@ -26,4 +26,5 @@ end
 
 group :production do
   gem 'therubyracer'
+  gem 'newrelic_rpm'
 end
