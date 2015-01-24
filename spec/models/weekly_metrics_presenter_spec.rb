@@ -1,10 +1,8 @@
 require "spec_helper"
 
 describe WeeklyMetricsPresenter do
-  def appointment_for(start_time, duration = 60)
-    availability = FactoryGirl.create(:availability,
-                                      :start_time => start_time,
-                                      :duration => duration)
+  def appointment_for(start_time, options={})
+    availability = FactoryGirl.create(:availability, {:start_time => start_time, :duration => 60}.merge(options))
     FactoryGirl.create(:appointment, :availability => availability)
   end
 
