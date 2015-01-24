@@ -20,7 +20,7 @@ class WeeklyMetricsPresenter
   end
 
   def total_appointments
-    Appointment.where(:start_time => (starting..ending)).count
+    appointments.count
   end
 
   def has_included_date?(date)
@@ -28,6 +28,24 @@ class WeeklyMetricsPresenter
   end
 
   def total_abandoned_availabilties
-    Availability.abandoned.where(:start_time => (starting..ending)).count
+    availabilities.abandoned.count
+  end
+
+  def appointments_for(city)
+    appointments.where(city: city).count
+  end
+
+  def abandoned_availabilities_for(city)
+    availabilities.abandoned.where(city: city).count
+  end
+
+  protected
+
+  def availabilities
+    Availability.where(:start_time => (starting..ending))
+  end
+
+  def appointments
+    Appointment.where(:start_time => (starting..ending))
   end
 end
