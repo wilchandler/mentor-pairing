@@ -5,20 +5,32 @@
     <div class="panel">
   	  <p><span aria-hidden="true" class="icon" data-icon="&hearts;"></span> There isn't currently any upcoming mentoring availibility. <%= link_to "Offer to mentor someone!", new_availability_path %></p>
   	</div>
-  <% end %>
-
-  <% @availabilities.each do |a| %>
+  <% else %>
     <div class="panel">
-    	<p class="panel-information">
-    		<%= image_tag a.mentor.gravatar_url, :class => "left" %>
-    		<span aria-hidden="true" class="icon" data-icon="&hearts;"></span>
-    	  <%= link_to a.mentor.name, user_path(a.mentor) %>
-    	  on <%= display_availability(a) %>
-    	</p>
-    	<p>
-    		<%= link_to "Sign up", new_appointment_request_path(:availability_id => a.id) %>
-    	</p>
+      <p class="panel-information">
+        Filter by City: 
+       <select id="city-filter">
+         <option></option>
+         <option value="Chicago">Chicago</option>
+         <option value="San Francisco">San Francisco</option>
+         <option value="New York">New York</option>
+         <option value="Columbus">Columbus</option>
+       </select>
+      </p>
     </div>
+    <% @availabilities.each do |a| %>
+      <div class="panel" data-city="<%= a.city %>">
+      	<p class="panel-information">
+      		<%= image_tag a.mentor.gravatar_url, :class => "left" %>
+      		<span aria-hidden="true" class="icon" data-icon="&hearts;"></span>
+      	  <%= link_to a.mentor.name, user_path(a.mentor) %>
+      	  on <%= display_availability(a) %>
+      	</p>
+      	<p>
+      		<%= link_to "Sign up", new_appointment_request_path(:availability_id => a.id) %>
+      	</p>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
