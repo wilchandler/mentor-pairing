@@ -6,17 +6,16 @@
   	  <p><span aria-hidden="true" class="icon" data-icon="&hearts;"></span> There isn't currently any upcoming mentoring availibility. <%= link_to "Offer to mentor someone!", new_availability_path %></p>
   	</div>
   <% else %>
-    <div class="panel">
-      <p class="panel-information">
-        Filter by City: 
+    <div class="panel" id="filter">
+      <label>Filter by City</label>
        <select id="city-filter">
-         <option></option>
+         <option value="All">Show All</option>
+
          <option value="Chicago">Chicago</option>
          <option value="San Francisco">San Francisco</option>
          <option value="New York">New York</option>
          <option value="Columbus">Columbus</option>
        </select>
-      </p>
     </div>
     <% @availabilities.each do |a| %>
       <div class="panel" data-city="<%= a.city %>">
