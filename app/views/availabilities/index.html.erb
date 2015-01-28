@@ -10,11 +10,7 @@
       <label>Filter by City</label>
        <select id="city-filter">
          <option value="All">Show All</option>
-
-         <option value="Chicago">Chicago</option>
-         <option value="San Francisco">San Francisco</option>
-         <option value="New York">New York</option>
-         <option value="Columbus">Columbus</option>
+         <%= options_for_select(Location::CITY_NAMES) %>
        </select>
     </div>
     <% @availabilities.each do |a| %>
