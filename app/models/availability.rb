@@ -1,7 +1,7 @@
 class Availability < ActiveRecord::Base
   include LocaltimeAdjustment
-  
-  CITY_ROUTE_CONSTRAINT = lambda do |req| 
+
+  CITY_ROUTE_CONSTRAINT = lambda do |req|
     loc = Location.find_by_slug(req[:city])
     loc && loc.physical?
   end
@@ -28,11 +28,11 @@ class Availability < ActiveRecord::Base
     where("users.activated" => true).
     where("start_time < ?", Time.now)
   }
-  
+
   def self.today(tz)
     now = Time.now
-    where('start_time between ? and ?', 
-      now.utc.to_s, 
+    where('start_time between ? and ?',
+      now.utc.to_s,
       utc_eod_for_tz(now,tz).to_s)
   end
 

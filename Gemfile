@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "compass-rails", "1.1.3"
+gem "compass-rails"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "pg"

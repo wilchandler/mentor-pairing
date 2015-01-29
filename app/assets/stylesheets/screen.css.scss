@@ -421,10 +421,20 @@ label {
 	width: 180px;
 }
 
+#filter label {
+  font-size: 1em;
+  font-weight: bold;
+  width: 150px;
+}
+
 .field {
 	border-top: 1px dashed #ccc;
 	padding-top: 1em;
 	margin-bottom: 2em;
+}
+
+input#first_name {
+  margin-right: 10px;
 }
 
 .addon {

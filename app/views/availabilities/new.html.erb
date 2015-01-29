@@ -59,9 +59,9 @@
     </div>
 
     <div class="field"><label>Duration in minutes</label><%= text_field :availability, :duration %></div>
-    <div class="field"><label>City</label><%= select(:availability, :city, options_for_select(Location::CITY_NAMES) ) %></div>
+    <div class="field"><label>Mentor Students From</label><%= select(:availability, :city, options_for_select(Location::CITY_NAMES) ) %></div>
     <div class="field"><label>Timezone</label><%= time_zone_select(:availability, :timezone, ActiveSupport::TimeZone.us_zones, default: "Central Time (US & Canada)") %></div>
-    <div class="field"><label>Location</label><%= text_field :availability, :location %></div>
+    <div class="field"><label>Where should we pair?</label><%= text_field :availability, :location, :size => "40", :placeholder => "DBC, Google Hangout, Your Company" %></div>
     <input id="submit_availability" type="submit" />
   <% end %>
 </div>

@@ -1,0 +1,18 @@
+.panel {
+	width: 200px;
+	height: 200px;
+	display: block;
+	margin: 0px auto;
+	background-color: blue;
+	border: 1px solid black;
+	color: white;
+	font-family: Gotham, sans-serif;
+	font-weight: bold;
+	line-height: 200px;
+	text-align: center;
+}
+
+.panel:nth-child(even){
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

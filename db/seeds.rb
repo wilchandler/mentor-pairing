@@ -11,29 +11,36 @@ def random_token
   foo.sample(5).join
 end
 
-7.times do
+def create_availability_data
+  possibilities = [
+    { timezone: "Central Time (US & Canada)", city: "Chicago"},
+    { timezone: "Pacific Time (US & Canada)", city: "San Francisco"},
+    { timezone: "Eastern Time (US & Canada)", city: "New York"},
+    { timezone: "Eastern Time (US & Canada)", city: "Columbus"}
+  ]
+
+  {start_time: 1.week.from_now, duration: 30, location: "Dev Bootcamp"}.merge(possibilities.sample)
+
+end
+
+15.times do
   random = random_token
   u = User.create!(
-    email: "mentor-#{random}@example.com",
-    first_name: "Ima",
-    last_name: "Mentor-#{random}",
-    activated: true,
-    twitter_handle: "mentor_#{random}")
+  email: "mentor-#{random}@example.com",
+  first_name: "Ima",
+  last_name: "Mentor-#{random}",
+  activated: true,
+  twitter_handle: "mentor_#{random}")
 
-  u.availabilities.create!(
-    start_time: 1.week.from_now,
-    duration: 30,
-    location: "Dev Bootcamp",
-    timezone: "Central Time (US & Canada)",
-    city: "Chicago")
+  u.availabilities.create!(create_availability_data)
 end
 
 mentee = User.create!(
-  email: "mentee@example.com",
-  first_name: "Ima",
-  last_name: "Mentee",
-  activated: true,
-  twitter_handle: "mentee"
+email: "mentee@example.com",
+first_name: "Ima",
+last_name: "Mentee",
+activated: true,
+twitter_handle: "mentee"
 )
 
 availabilities = Availability.order("random()")
