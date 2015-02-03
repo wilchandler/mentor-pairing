@@ -13,6 +13,9 @@
          <%= options_for_select(Location::CITY_NAMES) %>
        </select>
     </div>
+    <div class="panel" id="no-availability">
+      <p><span aria-hidden="true" class="icon" data-icon="&hearts;"></span> There currently aren't any mentoring availabilities for <span id="no-availability-city"></span>.<br><%= link_to "Offer to mentor someone!", new_availability_path %></p>
+    </div>
     <% @availabilities.each do |a| %>
       <div class="panel" data-city="<%= a.city %>">
       	<p class="panel-information">
