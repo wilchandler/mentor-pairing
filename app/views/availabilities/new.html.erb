@@ -8,7 +8,7 @@
 </div>
 
 <div class="panel">
-  <%= form_tag availabilities_path do %>
+  <%= form_tag availabilities_path, id: "availability" do %>
     <div class="field"><label>Email address</label><%= text_field_tag :email %></div>
     <div class="field"><label>Name</label><%= text_field_tag :first_name %><%= text_field_tag :last_name %></div>
     <div class="field"><label>Twitter handle<span class="addon">@</span></label><%= text_field_tag :twitter_handle %></div>

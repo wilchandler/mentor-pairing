@@ -16,4 +16,5 @@
 //= require availabilities/availability_recurrence
 //= require availabilities/new_form
 //= require availabilities/new
+//= require validator
 //= require_tree .
