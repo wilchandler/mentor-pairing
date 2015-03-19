@@ -452,6 +452,10 @@ input#first_name {
 	display: none;
 }
 
+.field_error {
+  border: 2px solid $base;
+}
+
 /* $ICONS ********************************************************************/
 
 .icon {
