@@ -36,6 +36,14 @@ class UserMailer < ActionMailer::Base
     mail(:to => @mentee.email, :subject => "#{@mentor.name} isn't available at the time you requested")
   end
 
+  def appointment_deletion(appointment)
+    @appointment = appointment
+    @mentor = appointment.mentor
+    @mentee = appointment.mentee
+
+    mail(:to => [@mentee.email,@mentor.email], :subject => "Mentoring appointment canceled")   
+  end
+
   def feedback_request(appointment, giver, receiver)
     @appointment = appointment
     @giver = giver

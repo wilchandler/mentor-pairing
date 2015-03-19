@@ -21,6 +21,8 @@ MentorPairing::Application.routes.draw do
 
   resources :availabilities
 
+  resources :appointments, only: [:destroy]
+
   resources :users do
     collection do
       get :manage
@@ -30,5 +32,6 @@ MentorPairing::Application.routes.draw do
       get :feedback
     end
   end
+  
   resources :appointment_requests
 end

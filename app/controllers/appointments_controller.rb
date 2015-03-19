@@ -14,6 +14,20 @@ class AppointmentsController < ApplicationController
     redirect_to edit_user_path(mentor.activation_code)
   end
 
+  def destroy
+    appointment = Appointment.find(params[:id])
+    mentor = appointment.mentor
+    if appointment.mentor.activation_code == params[:code]
+      appointment.destroy
+      UserMailer.appointment_deletion(appointment).deliver
+      flash[:notice] = "The appointment was deleted!"
+    else
+      flash[:notice] = "You are not authorized to delete this appointment."
+    end
+
+    redirect_to edit_user_path(mentor.activation_code)
+  end
+
   def feedback
     @feedback_giver = User.find_by_activation_code(params[:user_code])
     @appointment = Appointment.find_by_id_and_user(params[:appointment_id], @feedback_giver)
