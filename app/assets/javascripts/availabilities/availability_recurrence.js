@@ -37,10 +37,12 @@ AvailabilityRecurrence.prototype.formatAvailabilityTime = function() {
   var minutes = this.availabilityTime().getMinutes();
   var ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
 
-  return pad(hours) + ":" + minutes + " " + ampm;
+  // the hour '0' should be '12'
+  if (!hours) { hours = 12; };
+  if (!minutes) { minutes = 0 };
+    
+  return pad(hours) + ":" + pad(minutes) + " " + ampm;
 }
 
 AvailabilityRecurrence.prototype.availabilityTime = function() {
@@ -48,8 +50,12 @@ AvailabilityRecurrence.prototype.availabilityTime = function() {
   var hour = $("#availability_start_time_4i_ option:selected").val();
   var minute = $("#availability_start_time_5i_ option:selected").val();
   var ampm = $("#availability_start_time_6i_ option:selected").val();
-  var trueHour = ampm == 'AM' ? hour : String(Number(hour) + 12);
 
+  // Adjust hours to military time. Watch out for midnight
+  var trueHour = hour;
+  if (ampm == 'PM' && hour > 12) { trueHour = String(Number(hour) + 12) }
+  if (ampm == 'AM' && hour == 12) { trueHour = 0 }
+    
   return new Date(date + " " + trueHour + ":" + minute);
 }
 
