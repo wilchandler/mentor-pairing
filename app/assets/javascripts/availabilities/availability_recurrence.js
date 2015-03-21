@@ -27,18 +27,33 @@ AvailabilityRecurrence.prototype.renderRecurrencePattern = function() {
   var template = $(this.$el.find(".template").html());
   template.find(".dates_recurring").html(this.recurrenceDatesSentence());
   template.find(".time_recurring").html(
-    pad(this.availabilityTime().getHours()) + ":" + pad(this.availabilityTime().getMinutes())
+    pad(this.formatAvailabilityTime().split(':')[0]) + ":"+
+    pad(this.formatAvailabilityTime().split(':')[1].substring(0,1)) + ' ' +
+    pad(this.formatAvailabilityTime().split(':')[1].substring(3,5))
   );
 
   return template;
 }
 
+AvailabilityRecurrence.prototype.formatAvailabilityTime = function() {
+  var hours = this.availabilityTime().getHours();
+  var minutes = this.availabilityTime().getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
 AvailabilityRecurrence.prototype.availabilityTime = function() {
   var date = $("#availability_start_time_1s").val();
-  var hour = $("#availability_start_time_4i option:selected").val();
-  var minute = $("#availability_start_time_5i option:selected").val();
+  var hour = $("#availability_start_time_4i_ option:selected").val();
+  var minute = $("#availability_start_time_5i_ option:selected").val();
+  var ampm = $("#availability_start_time_6i_ option:selected").val();
+  var trueHour = ampm === 'am' ? hour : String(Number(hour) + 12);
 
-  return new Date(date + " " + hour + ":" + minute);
+  return new Date(date + " " + trueHour + ":" + minute);
 }
 
 AvailabilityRecurrence.prototype.numberOfRecurrences = function() {
