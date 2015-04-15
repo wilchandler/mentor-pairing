@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20140325153732) do
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "city"
     t.boolean  "feedback_sent", default: false
+    t.string   "city"
   end
 
   create_table "availabilities", force: true do |t|
