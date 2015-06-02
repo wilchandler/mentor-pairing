@@ -91,7 +91,7 @@ describe WeeklyMetricsPresenter do
 
     context 'for a city' do
       it "returns the count of abandoned availabilities from the db" do
-        this_week = (Time.now.beginning_of_week(:sunday)...Time.now.end_of_week(:sunday))
+        this_week = (Time.now.beginning_of_week(:sunday)...Time.now)
         2.times { availability_for(rand(this_week), city: 'Chicago') }
         1.times { availability_for(rand(this_week), city: 'New York') }
 
