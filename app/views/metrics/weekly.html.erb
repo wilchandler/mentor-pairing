@@ -12,13 +12,31 @@
     </div>
   </div>
 
-  <div>
-    <span class="weekly-total-count"><%= @metrics.total_appointments %></span>
-    <%= "appointment".pluralize(@metrics.total_appointments) %> this week
-  </div>
+  <ul class="report">
+    <li>
+      <div>
+        <span class="weekly-total-count"><%= @metrics.total_appointments %></span>
+        <%= "appointment".pluralize(@metrics.total_appointments) %> this week
+      </div>
 
-  <div>
-    <span class="weekly-total-count"><%= @metrics.total_abandoned_availabilties %></span>
-    abandoned <%= "availability".pluralize(@metrics.total_abandoned_availabilties) %> this week
-  </div>
+      <div>
+        <span class="weekly-total-count"><%= @metrics.total_abandoned_availabilties %></span>
+        abandoned <%= "availability".pluralize(@metrics.total_abandoned_availabilties) %> this week
+      </div>
+    </li>
+
+    <% Location.all.each do |l| %>
+      <li>
+        <div>
+          <span class="weekly-total-count"><%= @metrics.appointments_for(l.name) %></span>
+          <%= "appointment".pluralize(@metrics.appointments_for(l.name)) %> this week in <%= l.name %>
+        </div>
+
+        <div>
+          <span class="weekly-total-count"><%= @metrics.abandoned_availabilities_for(l.name) %></span>
+          abandoned <%= "availability".pluralize(@metrics.abandoned_availabilities_for(l.name)) %> this week in <%= l.name %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div>

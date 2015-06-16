@@ -17,17 +17,9 @@ class Availability < ActiveRecord::Base
   before_save :adjust_for_timezone
   before_save :set_end_time
 
-  scope :visible, Proc.new {
-    includes(:mentor).
-    where("users.activated" => true).
-    where("start_time > ?", Time.now)
-  }
-
-  scope :abandoned, -> {
-    includes(:mentor).
-    where("users.activated" => true).
-    where("start_time < ?", Time.now)
-  }
+  scope :with_active_mentors, -> { includes(:mentor).where("users.activated" => true) }
+  scope :visible,             -> { with_active_mentors.where("start_time > ?", Time.now) }
+  scope :abandoned,           -> { with_active_mentors.where("start_time < ?", Time.now) }
 
   def self.today(tz)
     now = Time.now
