@@ -21,6 +21,8 @@
       <h4>I'd like to mentor on these topics:</h4>
       <blockquote><%=  @user.interests %></blockquote>
     <% end %>
+
+    <h3>Total Appointments: <%= @user.mentoring_appointments.past.count %><h3>
   </div>
 </div>
 
