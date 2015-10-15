@@ -5,5 +5,9 @@
     <%= link_to(appointment.mentee.name, appointment.mentee) %>
     on
     <%= display_availability(appointment) %>
+    <% if appointment.in_future? %>
+      <%= link_to "Delete!", appointment_path(appointment, code: appointment.mentor.activation_code),
+            :method => :delete, :id => "delete_appointment_#{appointment.id}" %>
+    <% end %>
   </p>
 </div>

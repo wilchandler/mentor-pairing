@@ -34,6 +34,10 @@ class Appointment < ActiveRecord::Base
                 ).first
   end
 
+  def in_future?
+    Time.now < self.start_time
+  end
+
   private
 
   def parse_availability

@@ -36,4 +36,25 @@ describe AppointmentsController do
       }.not_to change{Appointment.count}
     end
   end
+
+  describe "#destroy" do
+    let!(:availability) { FactoryGirl.create(:availability) }
+    let!(:mentor) { availability.mentor }
+    let!(:mentee) { FactoryGirl.create(:mentee) }
+    let!(:appointment) { Appointment.create!(mentor: mentor, mentee: mentee, availability: availability) }
+
+    it 'does not destroy an appointment if the wrong mentor' do
+      other_mentor = FactoryGirl.create(:mentor)
+
+      expect {
+        post(:destroy, code: other_mentor.activation_code, id: appointment.id)
+      }.not_to change { Appointment.count }
+    end
+    
+    it 'destroys an appointment if the mentor is correct' do
+      expect {
+        post(:destroy, code: mentor.activation_code, id: appointment.id)
+      }.to change { Appointment.count }.by -1
+    end
+  end
 end
