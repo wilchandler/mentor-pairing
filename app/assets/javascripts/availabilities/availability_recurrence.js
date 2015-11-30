@@ -53,10 +53,12 @@ AvailabilityRecurrence.prototype.availabilityTime = function() {
 
   // Adjust hours to military time. Watch out for midnight
   var trueHour = hour;
-  if (ampm == 'PM' && hour > 12) { trueHour = String(Number(hour) + 12) }
-  if (ampm == 'AM' && hour == 12) { trueHour = 0 }
-    
-  return new Date(date + " " + trueHour + ":" + minute);
+  if (ampm == 'PM' && Number(hour) < 12) { trueHour = String(Number(hour) + 12) }
+  if (ampm == 'AM' && Number(hour) == 12) { trueHour = 0 }
+  trueHour = trueHour.length > 1 ? trueHour : "0" + trueHour;  
+
+  var unlocalized = new Date(date + "T" + trueHour + ":" + minute);
+  return new Date(unlocalized.getTime() + unlocalized.getTimezoneOffset() * 60 * 1000);
 }
 
 AvailabilityRecurrence.prototype.numberOfRecurrences = function() {

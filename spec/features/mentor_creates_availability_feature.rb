@@ -80,5 +80,30 @@ feature "Mentor creates availability" do
       expect(page).to have_content "#{mentor.name} on #{mentoring_time.strftime("%m/%d/%Y")} from 12:45pm"
       expect(page).to have_content "#{mentor.name} on #{second_time.strftime("%m/%d/%Y")} from 12:45pm"
     end
+
+    it 'displays a preview of the recurring appointment dates', js: true do
+      mentor = FactoryGirl.create(:mentor)
+
+      visit new_availability_path
+      fill_in :first_name, with: mentor.first_name
+      fill_in :last_name, with: mentor.last_name
+      fill_in :email, with: mentor.email
+      fill_in :twitter_handle, with: mentor.twitter_handle
+      fill_in :availability_duration, with: 60
+
+      mentoring_time = 1.week.from_now
+      select_datetime(mentoring_time, :availability_start_time)
+      check :availability_setup_recurring
+      select('week', :from => :availability_recur_weekly)
+
+      num_recurrences = 3
+      dates = (0..num_recurrences).to_a.map { |n| mentoring_time + n.weeks }
+      select(num_recurrences.to_s, :from => :availability_recur_num)
+
+      dates_preview = page.find('.dates_recurring').text
+      dates_formatted = dates.map { |d| d.strftime('%-m/%-d') }.to_sentence
+
+      expect(dates_preview).to match dates_formatted
+    end
   end
 end
