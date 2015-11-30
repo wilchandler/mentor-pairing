@@ -103,7 +103,13 @@ feature "Mentor creates availability" do
       dates_preview = page.find('.dates_recurring').text
       dates_formatted = dates.map { |d| d.strftime('%-m/%-d') }.to_sentence
 
+      time_preview = page.find('.time_recurring').text
+      minutes = round_availability_minutes(mentoring_time.min)
+      adjusted_time = mentoring_time.change(min: minutes)
+      time_formatted = adjusted_time.strftime('%I:%M %P') # => Example: '06:45 pm'
+
       expect(dates_preview).to match dates_formatted
+      expect(time_preview).to match time_formatted
     end
   end
 end
