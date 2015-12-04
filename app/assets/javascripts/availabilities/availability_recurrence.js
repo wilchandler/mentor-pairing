@@ -31,16 +31,17 @@ AvailabilityRecurrence.prototype.renderRecurrencePattern = function() {
 }
 
 AvailabilityRecurrence.prototype.formatAvailabilityTime = function() {
-  function pad(n){return n < 10 ? '0' + n : n}
+  function pad(n){ return n < 10 ? '0' + n : n; }
 
-  var hours = this.availabilityTime().getHours();
-  var minutes = this.availabilityTime().getMinutes();
+  var availabilityTime = this.availabilityTime();
+  var hours = availabilityTime.getHours();
+  var minutes = availabilityTime.getMinutes();
   var ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
 
   // the hour '0' should be '12'
-  if (!hours) { hours = 12; };
-  if (!minutes) { minutes = 0 };
+  if (!hours) { hours = 12; }
+  if (!minutes) { minutes = 0; }
     
   return pad(hours) + ":" + pad(minutes) + " " + ampm;
 }
@@ -53,12 +54,17 @@ AvailabilityRecurrence.prototype.availabilityTime = function() {
 
   // Adjust hours to military time. Watch out for midnight
   var trueHour = hour;
-  if (ampm == 'PM' && Number(hour) < 12) { trueHour = String(Number(hour) + 12) }
-  if (ampm == 'AM' && Number(hour) == 12) { trueHour = 0 }
-  trueHour = trueHour.length > 1 ? trueHour : "0" + trueHour;  
+  if (ampm == 'PM' && Number(hour) < 12) {
+    trueHour = String(Number(hour) + 12);
+  } else if (ampm == 'AM' && Number(hour) == 12) {
+    trueHour = 0;
+  }
+  trueHour = trueHour.length > 1 ? trueHour : "0" + trueHour;
 
+  // Parsing ISO8601 time format in JS ES5 assumes UTC if no timezone offset given
   var unlocalized = new Date(date + "T" + trueHour + ":" + minute);
-  return new Date(unlocalized.getTime() + unlocalized.getTimezoneOffset() * 60 * 1000);
+  var offset = unlocalized.getTimezoneOffset() * 60 * 1000;
+  return new Date(unlocalized.getTime() + offset);
 }
 
 AvailabilityRecurrence.prototype.numberOfRecurrences = function() {
