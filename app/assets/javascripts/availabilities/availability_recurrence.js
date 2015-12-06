@@ -46,6 +46,18 @@ AvailabilityRecurrence.prototype.formatAvailabilityTime = function() {
   return pad(hours) + ":" + pad(minutes) + " " + ampm;
 }
 
+AvailabilityRecurrence.prototype.getLocalUTCOffset = function(date) {
+  function pad(n){ return n < 10 ? '0' + n : n; }
+
+  date = date || new Date();
+  var offset = date.getTimezoneOffset();
+  var sign = offset > 0 ? '-' : '+';
+  offset = Math.abs(offset);
+  var hours = Math.floor(offset / 60);
+  var minutes = Math.floor(offset % 60);
+  return sign + pad(hours) + ":" + pad(minutes);
+}
+
 AvailabilityRecurrence.prototype.availabilityTime = function() {
   var date = $("#availability_start_time_1s").val();
   var hour = $("#availability_start_time_4i_ option:selected").val();
@@ -61,10 +73,11 @@ AvailabilityRecurrence.prototype.availabilityTime = function() {
   }
   trueHour = trueHour.length > 1 ? trueHour : "0" + trueHour;
 
-  // Parsing ISO8601 time format in JS ES5 assumes UTC if no timezone offset given
-  var unlocalized = new Date(date + "T" + trueHour + ":" + minute);
-  var offset = unlocalized.getTimezoneOffset() * 60 * 1000;
-  return new Date(unlocalized.getTime() + offset);
+  // In ECMAScript 5, if no timezone offset is specified, the Date constructor
+  // assumes the time being parsed is UTC and returns a localized time
+  var offset = this.getLocalUTCOffset();
+
+  return new Date(date + "T" + trueHour + ":" + minute + offset);
 }
 
 AvailabilityRecurrence.prototype.numberOfRecurrences = function() {
